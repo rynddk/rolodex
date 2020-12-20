@@ -4,8 +4,13 @@ import logo from './logo.svg';
 
 // eslint-disable-next-line no-extra-parens
 const App = () => (
-    <div className="App">
-        <header className="App-header">
+    <>
+        <header>
+            <a href="#main" className="App-link">Skip to Main Content</a>
+            <h1>Rolodex</h1>
+        </header>
+
+        <main id="main" className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
                 Edit <code>src/App.js</code> and save to reload.
@@ -18,8 +23,8 @@ const App = () => (
             >
                 Learn React
             </a>
-        </header>
-    </div>
+        </main>
+    </>
 );
 
 export default App;
