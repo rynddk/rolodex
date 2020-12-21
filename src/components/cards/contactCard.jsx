@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ReactComponent as ReactEmail } from '../../assets/icons/email.svg';
+import { ReactComponent as ReactPhone } from '../../assets/icons/phone.svg';
 import styles from './contactCard.module.css';
 
 const buttonClick = (event, contactId, onClose) => {
@@ -53,8 +55,14 @@ const renderDetails = (data, contactName) => {
             </p>
 
             <address className={styles.contactAddress}>
-                <a href={`mailto:${email}`} className={styles.contactDetail} aria-label={`Email ${contactName}`}>{email}</a>
-                <a href={`tel:${phone}`} className={styles.contactDetail} aria-label={`Call ${contactName}`}>{phone}</a>
+                <a href={`mailto:${email}`} className={styles.contactDetail} aria-label={`Email ${contactName}`}>
+                    <span className={styles.addressIcon} aria-hidden="true"><ReactEmail /></span>
+                    {email}
+                </a>
+                <a href={`tel:${phone}`} className={styles.contactDetail} aria-label={`Call ${contactName}`}>
+                    <span className={styles.addressIcon} aria-hidden="true"><ReactPhone /></span>
+                    {phone}
+                </a>
             </address>
         </>
     );

@@ -3,7 +3,7 @@
     min-height: calc(100vh - 80px);
     width: 100%;
 }
-    
+
 .contactList {
     box-sizing: border-box;
     list-style: none;
@@ -52,13 +52,13 @@
     color: #008390;
 }
 
-[aria-selected="true"] .contactLink {
+[aria-selected='true'] .contactLink {
     background-color: #FAFAFA;
     border-color: #008390;
     text-decoration: none;
 }
 
-[aria-selected="true"] .contactLink:before {
+[aria-selected='true'] .contactLink:before {
     background-color: #008390;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .instructions {
-    display: none;;
+    display: none;
 }
 
 @media screen and (min-width: 40rem) {
