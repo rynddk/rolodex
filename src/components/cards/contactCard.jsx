@@ -9,7 +9,8 @@ const ContactCard = ({ data }) => {
     return (
         <div className={styles.contactCard}>
             <picture className={styles.contactImageContainer}>
-                <img src={picture.thumbnail} srcSet={`${picture.thumbnail} 300w, ${picture.medium} 480w, ${picture.large} 960w`} alt={`A photo of ${contactName}`} />
+                <source srcSet={`${picture.thumbnail} 300w, ${picture.medium} 480w, ${picture.large} 960w`} />
+                <img src={picture.thumbnail} alt={`A photo of ${contactName}`} />
             </picture>
 
             <div className={styles.contactDetails}>
