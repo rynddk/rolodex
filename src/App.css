@@ -1,12 +1,13 @@
 .rolo-main-content {
+    align-items: center;
     background-color: #282C34;
-    min-height: 100vh;
+    box-sizing: border-box;
+    color: #FFF;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: #FFF;
+    min-height: 100vh;
+    padding-bottom: 92px;
 }
 
 .rolo-visually-hidden-link {
@@ -48,15 +49,50 @@
     margin: 0;
 }
 
+.rolo-pagination {
+    background-color: #282C34;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    padding: 16px;
+    position: fixed;
+    right: 0;
+}
+
+.rolo-pagination-list {
+    display: flex;
+    font-size: 0.875rem;
+    list-style: none;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.rolo-pagination-link-active {
+    background-color: #008390;
+    color: #FFF;
+}
+
+.rolo-pagination-link {
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: 0.3s ease border;
+}
+
+.rolo-pagination-link:hover,
+.rolo-pagination-link:focus {
+    border: 1px solid #47CCDE;
+}
+
 @media screen and (min-width: 30rem) {
     .rolo-main-content {
-        padding: 24px;
+        padding: 24px 24px 92px;
     }
 
     .rolo-contact-list {
         column-gap: 24px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(24rem, auto));
+        grid-template-columns: repeat(auto-fit, minmax(22rem, auto));
         row-gap: 24px;
     }
 }
