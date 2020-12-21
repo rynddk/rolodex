@@ -1,0 +1,113 @@
+.contactCard {
+    align-items: flex-start;
+    background-color: #FFF;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    position: relative;
+    width: 100%;
+}
+
+.contactImageContainer {
+    display: none;
+}
+
+.contactName {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.contactDetail {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+}
+
+.nonMobileContactDetail {
+    display: none;
+}
+
+@media screen and (min-width: 20rem) {
+    .contactImageContainer {
+        display: flex;
+        border-radius: 64px;
+        flex-grow: 0;
+        height: 48px;
+        margin: 0;
+        padding: 0;
+        object-fit: cover;
+        overflow: hidden;
+        width: 48px;
+    }
+
+    .contactDetails {
+        flex-grow: 1;
+        margin: 0 0 0 16px;
+        padding: 0;
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 30rem) {
+    .contactCard {
+        border-radius: 4px;
+        padding-top: 112px;
+    }
+
+    .contactCard:before {
+        background-color: #F0F0F0;
+        border-radius: 4px 4px 0 0;
+        content: '';
+        display: block;
+        left: 0;
+        height: 72px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .contactImageContainer {
+        height: 72px;
+        left: 50%;
+        position: absolute;
+        top: 36px;
+        transform: translateX(-50%);
+        width: 72px;
+    }
+
+    .contactDetails {
+        margin: 0 auto;
+        max-width: 20rem;
+        width: 100%;
+    }
+
+    .nonMobileContactDetail {
+        display: block;
+        font-size: 1rem;
+        line-height: 1.25;
+        margin: 0 0 0.5rem;
+    }
+}
+
+@media screen and (min-width: 60rem) {
+    .contactCard {
+        border-radius: 6px;
+        padding-top: 208px;
+    }
+
+    .contactCard:before {
+        border-radius: 6px 6px 0 0;
+        height: 128px;
+    }
+
+    .contactImageContainer {
+        height: 128px;
+        top: 64px;
+        width: 128px;
+    }
+}

@@ -1,19 +1,4 @@
-.App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
+.rolo-main-content {
     background-color: #282C34;
     min-height: 100vh;
     display: flex;
@@ -24,17 +9,55 @@
     color: #FFF;
 }
 
-.App-link {
-    color: #FFF;
-    text-decoration: underline;
+.rolo-visually-hidden-link {
+    background-color: #FFF;
+    border: 2px solid #282C34;
+    color: #282C34;
+    display: inline-block;
+    left: -72rem;
+    padding: 16px;
+    position: absolute;
+    top: 1rem;
+    z-index: 99;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+.rolo-visually-hidden-link:focus {
+    left: 1rem;
+}
+
+.rolo-hidden {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.rolo-contact-list {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.rolo-contact-card {
+    margin: 0;
+}
+
+@media screen and (min-width: 30rem) {
+    .rolo-main-content {
+        padding: 0 24px;
     }
 
-    to {
-        transform: rotate(360deg);
+    .rolo-contact-list {
+        margin-bottom: 24px;
+    }
+
+    .rolo-contact-card {
+        margin-top: 24px;
     }
 }
