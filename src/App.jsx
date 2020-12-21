@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react';
-import ContactCard from './components/cards/contactCard';
+import ContactList from './components/lists/contactList';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             allContacts: [],
             cards: [],
@@ -14,6 +15,9 @@ export default class App extends Component {
             pageCount: 0,
             perPage: 10
         };
+
+        this.contactList = React.createRef();
+        this.focusContactList = this.focusContactList.bind(this);
 
         this.handlePageClick = this.handlePageClick.bind(this);
     }
@@ -37,11 +41,18 @@ export default class App extends Component {
             });
     }
 
+    focusContactList() {
+        this.contactList.current.focus();
+        window.scrollTo(0, 0);
+    }
+
     handlePageClick(event) {
         const selectedPage = event.selected;
         const { state: { allContacts, perPage } } = this;
         const offset = selectedPage * perPage;
         const slicedData = allContacts.slice(offset, offset + perPage);
+
+        this.focusContactList();
 
         this.setState({
             cards: slicedData,
@@ -54,19 +65,7 @@ export default class App extends Component {
 
         return (
             <>
-                <ul className="rolo-contact-list">
-                    {cards.map((card, index) => {
-                        const { id = {}, name = {} } = card;
-                        const { first = '' } = name;
-                        const { value: key } = id;
-
-                        return (
-                            <li key={key || `${first}-${index}`} className="rolo-contact-card">
-                                <ContactCard data={card} />
-                            </li>
-                        );
-                    })}
-                </ul>
+                <ContactList contacts={cards} refProp={this.contactList} />
 
                 <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
                     <ReactPaginate
