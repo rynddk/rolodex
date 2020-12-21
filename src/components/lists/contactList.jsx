@@ -54,7 +54,7 @@ const ContactList = ({ contacts = [], refProp }) => {
                 })}
             </ul>
 
-            <div className={selectedItem && selectedItem?.data ? styles.selectedContact : styles} id="contact-detail" tabIndex="-1">
+            <div className={selectedItem && selectedItem?.data ? styles.selectedContact : styles.noSelectedContent} id="contact-detail" tabIndex="-1">
                 {selectedItem && selectedItem?.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
             </div>
         </div>
