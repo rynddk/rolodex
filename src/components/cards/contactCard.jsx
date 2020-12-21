@@ -2,6 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './contactCard.module.css';
 
+const buttonClick = (event, contactId, onClose) => {
+    event.preventDefault();
+    const contactLink = document.getElementById(contactId);
+    contactLink.focus();
+    onClose();
+
+    return null;
+};
+
 const getPronouns = (gender) => {
     if (gender.length) {
         if (gender === 'female') {
@@ -18,10 +27,42 @@ const getPronouns = (gender) => {
     return 'they/them';
 };
 
-const ContactCard = ({ data, details, selected }) => {
-    const { gender, name, email, phone, picture } = data;
-    const contactName = `${name.first} ${name.last}`;
+const renderButton = (contactId, onClose) => (
+    <a
+        href="/"
+        role="button"
+        arial-label="Go back to contact list"
+        onClick={(event) => buttonClick(event, contactId, onClose)}
+        className={styles.closeButton}
+    >
+        <span className={styles.buttonText} aria-hidden="true">x</span>
+    </a>
+);
+
+const renderDetails = (data, contactName) => {
+    const { gender, email, phone } = data;
     const pronouns = getPronouns(gender);
+
+    return (
+        <>
+            <p
+                aria-label={`${contactName}'s pronouns`}
+                className={styles.contactPronouns}
+            >
+                ({pronouns})
+            </p>
+
+            <address className={styles.contactAddress}>
+                <a href={`mailto:${email}`} className={styles.contactDetail} aria-label={`Email ${contactName}`}>{email}</a>
+                <a href={`tel:${phone}`} className={styles.contactDetail} aria-label={`Call ${contactName}`}>{phone}</a>
+            </address>
+        </>
+    );
+};
+
+const ContactCard = ({ contactId, data, details, onClose }) => {
+    const { name, picture } = data;
+    const contactName = `${name.first} ${name.last}`;
 
     return (
         <div className={details ? styles.fullContactCard : styles.contactCard}>
@@ -29,27 +70,19 @@ const ContactCard = ({ data, details, selected }) => {
                 <source srcSet={`${picture.thumbnail} 300w, ${picture.medium} 480w, ${picture.large} 960w`} />
                 <img src={picture.thumbnail} alt={`A photo of ${contactName}`} />
             </picture>
+            {details ? renderButton(contactId, onClose) : null}
 
             <div className={styles.contactDetails}>
                 {details ? <h2 className={styles.contactName} aria-label="Name">{contactName}</h2> : <p className={styles.contactName} aria-label="Name">{contactName}</p>}
 
-                <p
-                    aria-label={`${contactName}'s pronouns`}
-                    className={selected ? styles.contactPronouns : styles.hiddenPronouns}
-                >
-                    ({pronouns})
-                </p>
-
-                <address className={selected ? styles.selectedContactAddress : styles.contactAddress}>
-                    <span className={styles.contactDetail} aria-label={`Email ${contactName}`}>{email}</span>
-                    <span className={styles.contactDetail} aria-label={`Call ${contactName}`}>{phone}</span>
-                </address>
+                {details ? renderDetails(data, contactName) : null}
             </div>
         </div>
     );
 };
 
 ContactCard.defaultProps = {
+    contactId: '',
     data: {
         gender: '',
         name: {
@@ -63,10 +96,11 @@ ContactCard.defaultProps = {
         }
     },
     details: false,
-    selected: false
+    onClose: () => null
 };
 
 ContactCard.propTypes = {
+    contactId: PropTypes.string,
     data: PropTypes.shape({
         gender: PropTypes.string,
         name: PropTypes.shape({
@@ -83,7 +117,7 @@ ContactCard.propTypes = {
         })
     }),
     details: PropTypes.bool,
-    selected: PropTypes.bool
+    onClose: PropTypes.func
 };
 
 export default ContactCard;

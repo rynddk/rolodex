@@ -19,7 +19,7 @@
     padding: 16px;
     position: absolute;
     top: 1rem;
-    z-index: 99;
+    z-index: 50;
 }
 
 .rolo-visually-hidden-link:focus {
