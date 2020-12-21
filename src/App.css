@@ -50,14 +50,13 @@
 
 @media screen and (min-width: 30rem) {
     .rolo-main-content {
-        padding: 0 24px;
+        padding: 24px;
     }
 
     .rolo-contact-list {
-        margin-bottom: 24px;
-    }
-
-    .rolo-contact-card {
-        margin-top: 24px;
+        column-gap: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24rem, auto));
+        row-gap: 24px;
     }
 }
