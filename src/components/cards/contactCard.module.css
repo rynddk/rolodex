@@ -10,8 +10,60 @@
     width: 100%;
 }
 
+.closeButton {
+    background-color: #333;
+    border: 2px solid #FFF;
+    border-radius: 30px;
+    color: #FFF;
+    height: 48px;
+    position: absolute;
+    right: 1rem;
+    text-decoration: none;
+    top: 1rem;
+    width: 48px;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+    background-color: #FFF;
+    border: 2px solid #008390;
+    border-radius: 30px;
+    color: #008390;
+    height: 48px;
+    position: absolute;
+    right: 1rem;
+    text-decoration: none;
+    top: 1rem;
+    width: 48px;
+}
+
+.buttonText {
+    font-size: 28px;
+    line-height: 1;
+    left: 50%;
+    margin: auto;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
 .contactImageContainer {
-    display: none;
+    display: flex;
+    border-radius: 64px;
+    flex-grow: 0;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    overflow: hidden;
+    width: 48px;
+}
+
+.contactDetails {
+    flex-grow: 1;
+    margin: 0 0 0 16px;
+    padding: 0;
+    width: auto;
 }
 
 .contactName {
@@ -43,6 +95,11 @@
     margin: 0;
 }
 
+.contactDetail:hover,
+.contactDetail:focus {
+    color: #008390;
+}
+
 .contactAddress {
     display: none;
 }
@@ -51,25 +108,83 @@
     display: block;
 }
 
-@media screen and (min-width: 20rem) {
-    .contactImageContainer {
-        display: flex;
-        border-radius: 64px;
-        flex-grow: 0;
-        height: 48px;
-        margin: 0;
-        padding: 0;
-        object-fit: cover;
-        overflow: hidden;
-        width: 48px;
-    }
+.fullContactCard .contactAddress,
+.fullContactCard .selectedContactAddress {
+    display: block;
+    margin: 1rem auto 0;
+    max-width: 20rem;
+    text-align: left;
+}
 
-    .contactDetails {
-        flex-grow: 1;
-        margin: 0 0 0 16px;
-        padding: 0;
-        width: auto;
-    }
+.fullContactCard {
+    align-items: flex-start;
+    background-color: #FFF;
+    box-sizing: border-box;
+    display: block;
+    min-height: 100%;
+    padding-top: calc(20vh + 52px);
+    text-align: center;
+    width: 100%;
+}
+
+.fullContactCard:before {
+    background-color: #008390;
+    border-radius: 4px 4px 0 0;
+    content: '';
+    display: block;
+    left: 0;
+    height: 20vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.fullContactCard .contactImageContainer {
+    border-radius: 64px;
+    display: flex;
+    flex-grow: 0;
+    height: 72px;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    overflow: hidden;
+    position: absolute;
+    top: calc(20vh - 36px);
+    transform: translateX(-50%);
+    width: 72px;
+}
+
+.fullContactCard .contactName {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.fullContactCard .contactPronouns {
+    color: #333;
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+}
+
+.fullContactCard .contactDetails {
+    margin: 0 auto;
+    max-width: 90%;
+    width: 100%;
+}
+
+.fullContactCard .contactDetail {
+    margin-bottom: 0.5rem;
+}
+
+.addressIcon {
+    display: inline-block;
+    margin: 0 12px 0 0;
+    vertical-align: middle;
+    width: 18px;
 }
 
 @media screen and (min-width: 40rem) {
@@ -78,94 +193,22 @@
     .contactPronouns {
         display: none;
     }
-
-    .fullContactCard .contactAddress,
-    .fullContactCard .selectedContactAddress {
-        display: block;
-        margin: 1rem auto 0;
-        max-width: 20rem;
-        text-align: left;
-    }
-    
-    .fullContactCard {
-        align-items: flex-start;
-        background-color: #FFF;
-        box-sizing: border-box;
-        display: block;
-        min-height: 100%;
-        padding-top: 116px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .fullContactCard:before {
-        background-color: #008390;
-        border-radius: 4px 4px 0 0;
-        content: '';
-        display: block;
-        left: 0;
-        height: 72px;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-    .fullContactCard .contactImageContainer {
-        height: 72px;
-        left: 50%;
-        position: absolute;
-        top: 36px;
-        transform: translateX(-50%);
-        width: 72px;
-    }
-
-    .fullContactCard .contactName {
-        font-size: 2.4rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .fullContactCard .contactPronouns {
-        color: #333;
-        display: block;
-        font-size: 0.75rem;
-        line-height: 1;
-        margin: 0;
-        text-decoration: none;
-        text-align: center;
-    }
-
-    .fullContactCard .contactDetails {
-        margin: 0 auto;
-        max-width: 90%;
-        width: 100%;
-    }
-
-    .fullContactCard .contactDetail {
-        margin-bottom: 0.5rem;
-    }
-
-    .fullContactCard .nonMobileContactDetail {
-        display: block;
-        font-size: 1rem;
-        line-height: 1.25;
-        margin: 0 0 0.5rem;
-    }
 }
 
 @media screen and (min-width: 60rem) {
     .fullContactCard {
         border-radius: 6px;
-        padding-top: 208px;
+        padding-top: calc(25vh + 80px);
     }
 
     .fullContactCard:before {
         border-radius: 6px 6px 0 0;
-        height: 128px;
+        height: 25vh;
     }
 
     .fullContactCard .contactImageContainer {
         height: 128px;
-        top: 64px;
+        top: calc(25vh - 64px);
         width: 128px;
     }
 }

@@ -3,17 +3,18 @@ import ContactCard from '../cards/contactCard';
 import PropTypes from 'prop-types';
 import styles from './contactList.module.css';
 
-const renderContact = (contact) => <ContactCard data={contact} selected details />;
+const renderContact = (contact, itemId, handleClose) => <ContactCard data={contact} contactId={itemId} selected details onClose={handleClose} />;
 
 const renderInstructions = () => <p className={styles.instructions}>Select a contact to view their details.</p>;
 
 const ContactList = ({ contacts = [], refProp }) => {
     const [selectedItem, setSelectedItem] = useState(0);
+    const handleClose = () => setSelectedItem();
 
     return (
         <div className={styles.contactListContainer}>
             <ul
-                aria-activedescendant={selectedItem.itemId}
+                aria-activedescendant={selectedItem?.itemId || null}
                 aria-label="Contact List"
                 className={styles.contactList}
                 ref={refProp}
@@ -22,38 +23,39 @@ const ContactList = ({ contacts = [], refProp }) => {
                 {contacts.map((contact, index) => {
                     const { id = {}, name = {} } = contact;
                     const { first = '', last = '' } = name;
-                    const { value: key } = id;
-                    const uniqueId = key || `${first}-${index}`;
+                    const uniqueId = id?.value || `${first}-${index}`;
                     const itemId = uniqueId.replace(/\s+/gu, '-').replace(/\./gu, '').toLowerCase();
 
                     return (
                         <li
                             key={itemId}
-                            aria-selected={selectedItem.itemId === itemId}
+                            aria-selected={selectedItem?.itemId === itemId}
                             className={styles.contactListItem}
                         >
                             <a
                                 href={`/${itemId}`}
                                 onClick={(event) => {
                                     event.preventDefault();
+                                    document.getElementById('contact-detail').focus();
                                     setSelectedItem({
                                         data: contact,
                                         itemId
                                     });
                                 }}
+                                id={itemId}
                                 role="button"
                                 aria-label={`View contact information for ${first} ${last}`}
                                 className={styles.contactLink}
                             >
-                                <ContactCard data={contact} selected={selectedItem.itemId === itemId} />
+                                <ContactCard data={contact} />
                             </a>
                         </li>
                     );
                 })}
             </ul>
 
-            <div className={styles.selectedContact}>
-                {selectedItem && selectedItem.data ? renderContact(selectedItem.data) : renderInstructions()}
+            <div className={selectedItem && selectedItem?.data ? styles.selectedContact : styles} id="contact-detail" tabIndex="-1">
+                {selectedItem && selectedItem?.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
             </div>
         </div>
     );
