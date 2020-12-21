@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import ContactCard from './components/cards/contactCard';
 import axios from 'axios';
 
 export default class App extends Component {
@@ -20,15 +21,15 @@ export default class App extends Component {
     }
 
     renderList = (cards) => (
-        <ul>
+        <ul className="rolo-contact-list">
             {cards.map((card, index) => {
-                const { name = {}, id = {} } = card;
-                const { first = '', last = '', title = '' } = name;
+                const { id = {}, name = {} } = card;
+                const { first = '' } = name;
                 const { value: key } = id;
 
                 return (
-                    <li key={key || `${first}-${index}`}>
-                        {title} {first} {last}
+                    <li key={key || `${first}-${index}`} className="rolo-contact-card">
+                        <ContactCard data={card} />
                     </li>
                 );
             })}
@@ -44,12 +45,13 @@ export default class App extends Component {
 
         return (
             <>
-                <header>
-                    <a href="#main" className="App-link">Skip to Main Content</a>
+                <a href="#main" className="rolo-visually-hidden-link">Skip to Main Content</a>
+
+                <header className="rolo-hidden">
                     <h1>Rolodex</h1>
                 </header>
 
-                <main id="main" className="App-header">
+                <main id="main" className="rolo-main-content">
                     { cards.length ? this.renderList(cards) : this.renderLoader() }
                 </main>
             </>
