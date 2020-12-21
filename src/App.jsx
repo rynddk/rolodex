@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
+import Loading from './components/loading/loading';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 
@@ -23,7 +24,9 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        const minLoadTime = 1000;
+
+        setTimeout(() => this.fetchData(), minLoadTime);
     }
 
     fetchData() {
@@ -93,23 +96,19 @@ export default class App extends Component {
         );
     }
 
-    renderLoader = () => (
-        <p>Loading...</p>
-    );
-
     render() {
         const { cards = [] } = this.state;
 
         return (
             <>
-                <a href="#main" className="rolo-visually-hidden-link">Skip to Main Content</a>
+                <a href="#main" className="rolo-visually-hidden-link">Skip to Contact List</a>
 
                 <header className="rolo-hidden">
                     <h1>Rolodex</h1>
                 </header>
 
                 <main id="main" className="rolo-main-content">
-                    { cards.length ? this.renderList(cards) : this.renderLoader() }
+                    { cards.length ? this.renderList(cards) : <Loading /> }
                 </main>
             </>
         );
