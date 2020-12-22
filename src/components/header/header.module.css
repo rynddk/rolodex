@@ -1,6 +1,7 @@
 .header {
     background-color: var(--bodyBg);
     border-bottom: 1px solid var(--break);
+    box-sizing: border-box;
     display: block;
     height: 80px;
     width: 100%;

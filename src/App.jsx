@@ -7,6 +7,7 @@ import axios from 'axios';
 import { formatDataForExport } from './utils/export';
 import { formatRequestUrl } from './utils/api';
 import { sortAlphaByParam } from './utils/sorting';
+import styles from './components/lists/contactList.module.css';
 
 export default class App extends Component {
     constructor(props) {
@@ -71,13 +72,11 @@ export default class App extends Component {
         });
     }
 
-    renderList(cards) {
+    renderPagination() {
         const { pageCount } = this.state;
 
         return (
-            <>
-                <ContactList contacts={cards} refProp={this.contactList} />
-
+            <footer className="rolo-footer" id="footer">
                 <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
                     <ReactPaginate
                         previousLabel="prev"
@@ -107,12 +106,18 @@ export default class App extends Component {
                         previousLinkClassName="rolo-pagination-link"
                     />
                 </nav>
-            </>
+            </footer>
         );
     }
 
     renderLoader = () => (
-        <p className="rolo-loading-text">Loading...</p>
+        <>
+            <section id="rolodex" />
+
+            <aside id="contact-details" className={styles.selectedContent}>
+                <p className="rolo-loading-text">Loading...</p>
+            </aside>
+        </>
     );
 
     render() {
@@ -121,13 +126,15 @@ export default class App extends Component {
 
         return (
             <>
-                <a href="#main" className="rolo-visually-hidden-link">Skip to Main Content</a>
+                <div id="content" className="rolo-main-content">
+                    <a href="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</a>
 
-                <Header currentContacts={exportData} currentPage={currentPage} />
+                    <Header currentContacts={exportData} currentPage={currentPage} />
+                </div>
 
-                <main id="main" className="rolo-main-content">
-                    { cards.length ? this.renderList(cards) : this.renderLoader() }
-                </main>
+                { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : this.renderLoader() }
+
+                {this.renderPagination()}
             </>
         );
     }

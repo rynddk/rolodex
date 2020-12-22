@@ -1,4 +1,5 @@
 import './index.css';
+import 'wicg-inert';
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,7 +9,7 @@ ReactDOM.render(
     <React.StrictMode>
         <App />
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('main')
 );
 
 // If you want to start measuring performance in your app, pass a function
