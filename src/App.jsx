@@ -112,9 +112,9 @@ export default class App extends Component {
 
     renderLoader = () => (
         <>
-            <section id="rolodex" />
+            <main id="rolodex" />
 
-            <aside id="contact-details" className={styles.selectedContent}>
+            <aside id="contact-list" className={styles.noSelectedContent} tabIndex="-1">
                 <p className="rolo-loading-text">Loading...</p>
             </aside>
         </>

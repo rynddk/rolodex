@@ -70,7 +70,7 @@ const ContactList = ({ contacts = [], refProp }) => {
 
     return (
         <>
-            <section id="rolodex" className={styles.contactListContainer}>
+            <main id="rolodex" className={styles.contactListContainer}>
                 <ul
                     aria-activedescendant={selectedItem?.itemId || null}
                     aria-label="Contact List"
@@ -81,7 +81,7 @@ const ContactList = ({ contacts = [], refProp }) => {
                 >
                     {contacts.map((contact, index) => renderItem(contact, index, selectedItem?.itemId, setSelectedItem))}
                 </ul>
-            </section>
+            </main>
 
             {selectedItem && selectedItem.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
         </>
