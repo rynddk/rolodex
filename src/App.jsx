@@ -66,7 +66,7 @@ export default class App extends Component {
 
         this.setState({
             cards: slicedData,
-            currentPage: selectedPage,
+            currentPage: selectedPage + 1,
             offset
         });
     }
