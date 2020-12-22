@@ -112,7 +112,7 @@ export default class App extends Component {
     }
 
     renderLoader = () => (
-        <p>Loading...</p>
+        <p className="rolo-loading-text">Loading...</p>
     );
 
     render() {

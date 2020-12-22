@@ -28,6 +28,10 @@
     left: 1rem;
 }
 
+.rolo-loading-text {
+    color: var(--headingText);
+}
+
 .rolo-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
