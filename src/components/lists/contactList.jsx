@@ -29,7 +29,6 @@ const ContactList = ({ contacts = [], refProp }) => {
                     return (
                         <li
                             key={itemId}
-                            aria-selected={selectedItem?.itemId === itemId}
                             className={styles.contactListItem}
                         >
                             <a
