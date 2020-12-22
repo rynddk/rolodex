@@ -1,0 +1,54 @@
+.header {
+    border-bottom: 1px solid #F0F0F0;
+    display: block;
+    height: 80px;
+    width: 100%;
+}
+
+.headerContent {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    padding: 16px;
+    width: 100%;
+}
+
+.appTitle {
+    flex-grow: 1;
+    margin: 0 auto 0 0;
+    padding-right: 1rem;
+}
+
+.actions {
+    margin-left: auto;
+}
+
+.downloadButton {
+    background-color: #FCFCFC;
+    border: 2px solid #333;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    height: 40px;
+    position: relative;
+    width: 40px;
+}
+
+.downloadButton:hover,
+.downloadButton:focus {
+    background-color: #008390;
+    border-color: #008390;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.buttonIcon {
+    display: block;
+    left: 7px;
+    position: absolute;
+    top: 7px;
+    width: 22px;
+}

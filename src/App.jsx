@@ -1,8 +1,11 @@
 import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
+import Header from './components/header/header';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
+import { formatDataForExport } from './utils/export';
+import { formatRequestUrl } from './utils/api';
 import { sortAlphaByParam } from './utils/sorting';
 
 export default class App extends Component {
@@ -12,6 +15,7 @@ export default class App extends Component {
         this.state = {
             allContacts: [],
             cards: [],
+            currentPage: 0,
             offset: 0,
             pageCount: 0,
             perPage: 10
@@ -28,7 +32,10 @@ export default class App extends Component {
     }
 
     fetchData() {
-        axios.get(`https://randomuser.me/api/?page=1&results=83&inc=gender,name,picture,email,phone,id&seed=e9649cdad6d59e77`)
+        const requestedResults = 83;
+        const requestUrl = formatRequestUrl(1, requestedResults);
+
+        axios.get(requestUrl)
             .then((res) => {
                 const { offset, perPage } = this.state;
                 const { data: { results } } = res;
@@ -38,6 +45,7 @@ export default class App extends Component {
                 this.setState({
                     allContacts: results,
                     cards: slicedData,
+                    currentPage: 1,
                     pageCount: Math.ceil(results.length / perPage)
                 });
             });
@@ -58,6 +66,7 @@ export default class App extends Component {
 
         this.setState({
             cards: slicedData,
+            currentPage: selectedPage,
             offset
         });
     }
@@ -100,15 +109,14 @@ export default class App extends Component {
     );
 
     render() {
-        const { cards = [] } = this.state;
+        const { cards, currentPage } = this.state;
+        const exportData = formatDataForExport(cards);
 
         return (
             <>
                 <a href="#main" className="rolo-visually-hidden-link">Skip to Main Content</a>
 
-                <header className="rolo-hidden">
-                    <h1>Rolodex</h1>
-                </header>
+                <Header currentContacts={exportData} currentPage={currentPage} />
 
                 <main id="main" className="rolo-main-content">
                     { cards.length ? this.renderList(cards) : this.renderLoader() }
