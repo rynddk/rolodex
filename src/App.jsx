@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
+import { sortAlphaByParam } from './utils/sorting';
 
 export default class App extends Component {
     constructor(props) {
@@ -27,11 +28,12 @@ export default class App extends Component {
     }
 
     fetchData() {
-        axios.get(`https://randomuser.me/api/?page=1&results=83&inc=gender,name,picture,email,phone,id`)
+        axios.get(`https://randomuser.me/api/?page=1&results=83&inc=gender,name,picture,email,phone,id&seed=e9649cdad6d59e77`)
             .then((res) => {
                 const { offset, perPage } = this.state;
                 const { data: { results } } = res;
-                const slicedData = results.slice(offset, offset + perPage);
+                const alphabeticalData = sortAlphaByParam(results, 'first', 'last');
+                const slicedData = alphabeticalData.slice(offset, offset + perPage);
 
                 this.setState({
                     allContacts: results,
