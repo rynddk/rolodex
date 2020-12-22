@@ -19,7 +19,7 @@ img {
     width: 100%;
 }
 
-/* stylelint-disable no-important, rule-empty-line-before, rule-empty-line-after */
+/* stylelint-disable */
 [inert] {
     pointer-events: all !important;
     cursor: default !important;
@@ -29,7 +29,7 @@ img {
 [inert] * {
     user-select: auto !important;
 }
-/* stylelint-enable no-important */
+
 :root {
     --visuallyHiddenBg: #FAFAFA;
     --visuallyHiddenBorder: #008390;
@@ -64,4 +64,4 @@ img {
         --shadow: rgba(0, 0, 0, 0.5);
     }
 }
-/* stylelint-enable custom-property-empty-line-before, rule-empty-line-before, rule-empty-line-after */
+/* stylelint-enable */
