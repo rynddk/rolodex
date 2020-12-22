@@ -28,7 +28,9 @@
     "eject": "react-scripts eject",
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "stylelint src/**/*.css",
-    "lint:js": "eslint src/**/*.js  src/**/*.jsx"
+    "lint:js": "eslint src/**/*.js  src/**/*.jsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
