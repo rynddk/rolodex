@@ -24,6 +24,7 @@ img {
 
 /* stylelint-disable custom-property-empty-line-before, rule-empty-line-before */
 :root {
+    --visuallyHiddenBg: #FAFAFA;
     --bodyBg: #FFF;
     --bodyText: #303030;
     --headingText: #000;
@@ -38,6 +39,7 @@ img {
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --visuallyHiddenBg: #818284;
         --bodyBg: #282C34;
         --bodyText: #FFF;
         --headingText: #FAFAFA;
