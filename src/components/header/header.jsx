@@ -4,7 +4,7 @@ import React from 'react';
 import { ReactComponent as ReactDownload } from '../../assets/icons/download.svg';
 import styles from './header.module.css';
 
-const renderButton = (contacts, currentPage) => (
+const renderDownloadLink = (contacts, currentPage) => (
     <div className={styles.actions}>
         <CSVLink
             className={styles.downloadButton}
@@ -21,7 +21,7 @@ const Header = ({ currentContacts, currentPage }) => (
     <header className={styles.header}>
         <div className={styles.headerContent}>
             <h1 className={styles.appTitle}>Contacts</h1>
-            {currentContacts.length ? renderButton(currentContacts, currentPage) : null}
+            {currentContacts.length ? renderDownloadLink(currentContacts, currentPage) : null}
         </div>
     </header>
 );
