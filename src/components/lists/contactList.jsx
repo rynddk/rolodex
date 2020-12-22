@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContactCard from '../cards/contactCard';
 import PropTypes from 'prop-types';
 import styles from './contactList.module.css';
 
-const renderContact = (contact, itemId, handleClose) => <ContactCard data={contact} contactId={itemId} selected details onClose={handleClose} />;
+const renderContact = (contact, itemId, handleClose) => (
+    <aside
+        className={styles.selectedContact}
+        id="contact-detail" tabIndex="-1"
+        role="dialog"
+        aria-label={`${contact.name.first} ${contact.name.last}'s Contact Information'`}
+    >
+        <ContactCard data={contact} contactId={itemId} selected details onClose={handleClose} />
+    </aside>
+);
 
-const renderInstructions = () => <p className={styles.instructions}>Select a contact to view their details.</p>;
+const renderInstructions = () => (
+    <aside className={styles.noSelectedContent} id="contact-detail">
+        <p className={styles.instructions}>Select a contact to view their details.</p>
+    </aside>
+);
 
 const renderItem = (contact, index, selectedItem, setSelectedItem) => {
     const { id = {}, name = {} } = contact;
@@ -23,11 +36,12 @@ const renderItem = (contact, index, selectedItem, setSelectedItem) => {
                 href={`/${itemId}`}
                 onClick={(event) => {
                     event.preventDefault();
-                    document.getElementById('contact-detail').focus();
                     setSelectedItem({
                         data: contact,
                         itemId
                     });
+                    // wait for the update, then focus the detail
+                    setTimeout(() => document.getElementById('contact-detail').focus(), 0);
                 }}
                 id={itemId}
                 role="button"
@@ -44,25 +58,32 @@ const ContactList = ({ contacts = [], refProp }) => {
     const [selectedItem, setSelectedItem] = useState(0);
     const handleClose = () => setSelectedItem();
 
+    useEffect(() => {
+        const contentElem = document.getElementById('content');
+        const footerElem = document.getElementById('footer');
+        const listElem = document.getElementById('rolodex');
+
+        contentElem.inert = selectedItem && selectedItem.data;
+        footerElem.inert = selectedItem && selectedItem.data;
+        listElem.inert = selectedItem && selectedItem.data;
+    });
+
     return (
         <>
-            <main id="main" className="rolo-main-content">
-                <div className={styles.contactListContainer}>
-                    <ul
-                        aria-activedescendant={selectedItem?.itemId || null}
-                        aria-label="Contact List"
-                        className={styles.contactList}
-                        ref={refProp}
-                        tabIndex="-1"
-                    >
-                        {contacts.map((contact, index) => renderItem(contact, index, selectedItem?.itemId, setSelectedItem))}
-                    </ul>
-                </div>
-            </main>
+            <section id="rolodex" className={styles.contactListContainer}>
+                <ul
+                    aria-activedescendant={selectedItem?.itemId || null}
+                    aria-label="Contact List"
+                    className={styles.contactList}
+                    id="contacts-list"
+                    ref={refProp}
+                    tabIndex="-1"
+                >
+                    {contacts.map((contact, index) => renderItem(contact, index, selectedItem?.itemId, setSelectedItem))}
+                </ul>
+            </section>
 
-            <aside className={selectedItem && selectedItem?.data ? styles.selectedContact : styles.noSelectedContent} id="contact-detail" tabIndex="-1">
-                {selectedItem && selectedItem?.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
-            </aside>
+            {selectedItem && selectedItem.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
         </>
     );
 };

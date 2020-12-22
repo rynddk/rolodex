@@ -76,7 +76,7 @@ export default class App extends Component {
         const { pageCount } = this.state;
 
         return (
-            <footer>
+            <footer className="rolo-footer" id="footer">
                 <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
                     <ReactPaginate
                         previousLabel="prev"
@@ -112,9 +112,9 @@ export default class App extends Component {
 
     renderLoader = () => (
         <>
-            <main id="main" className="rolo-main-content" />
+            <section id="rolodex" />
 
-            <aside id="contact-details" className={styles.noSelectedContent}>
+            <aside id="contact-details" className={styles.selectedContent}>
                 <p className="rolo-loading-text">Loading...</p>
             </aside>
         </>
@@ -126,9 +126,11 @@ export default class App extends Component {
 
         return (
             <>
-                <a href="#main" className="rolo-visually-hidden-link">Skip to Main Content</a>
+                <div id="content" className="rolo-main-content">
+                    <a href="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</a>
 
-                <Header currentContacts={exportData} currentPage={currentPage} />
+                    <Header currentContacts={exportData} currentPage={currentPage} />
+                </div>
 
                 { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : this.renderLoader() }
 

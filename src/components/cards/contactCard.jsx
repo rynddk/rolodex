@@ -8,8 +8,10 @@ import styles from './contactCard.module.css';
 const buttonClick = (event, contactId, onClose) => {
     event.preventDefault();
     const contactLink = document.getElementById(contactId);
-    contactLink.focus();
     onClose();
+
+    // wait for the update, then focus the detail
+    setTimeout(() => contactLink.focus(), 0);
 
     return null;
 };
