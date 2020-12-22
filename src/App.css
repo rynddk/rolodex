@@ -40,10 +40,13 @@
 }
 
 .rolo-pagination {
+    align-items: center;
     background-color: var(--highlight);
     bottom: 0;
+    box-sizing: border-box;
     color: var(--headingText);
     display: flex;
+    height: 80px;
     left: 0;
     padding: 16px;
     position: fixed;
