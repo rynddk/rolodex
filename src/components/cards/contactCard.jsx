@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ReactComponent as ReactClose } from '../../assets/icons/close.svg';
 import { ReactComponent as ReactEmail } from '../../assets/icons/email.svg';
 import { ReactComponent as ReactPhone } from '../../assets/icons/phone.svg';
 import styles from './contactCard.module.css';
@@ -37,7 +38,7 @@ const renderButton = (contactId, onClose) => (
         onClick={(event) => buttonClick(event, contactId, onClose)}
         className={styles.closeButton}
     >
-        <span className={styles.buttonText} aria-hidden="true">x</span>
+        <span className={styles.buttonText} aria-hidden="true"><ReactClose /></span>
     </a>
 );
 
