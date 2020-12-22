@@ -28,7 +28,7 @@
     background-color: var(--bodyBg);
     border: 2px solid var(--active);
     border-radius: 30px;
-    color: var(--active);
+    color: var(--closeFocus);
     height: 48px;
     position: absolute;
     right: 1rem;
@@ -38,6 +38,7 @@
 }
 
 .buttonText {
+    color: inherit;
     font-size: 28px;
     line-height: 1;
     left: 50%;

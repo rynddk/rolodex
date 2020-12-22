@@ -34,6 +34,8 @@ img {
     --pagingationHover: #47CCDE;
     --break: #F0F0F0;
     --contactShadow: #FAFAFA;
+    --contactFocus: #CACACA;
+    --closeFocus: #008390;
     --shadow: rgba(0, 0, 0, 0.5);
 }
 
@@ -49,6 +51,8 @@ img {
         --pagingationHover: #008390;
         --break: #000;
         --contactShadow: #2A2A2A;
+        --contactFocus: #008390;
+        --closeFocus: #FFF;
         --shadow: rgba(0, 0, 0, 0.5);
     }
 }
