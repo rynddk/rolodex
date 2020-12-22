@@ -105,17 +105,26 @@
     }
 
     .selectedContact {
-        position: relative;
+        bottom: 80px;
+        left: 20rem;
+        right: 0;
+        top: 80px;
     }
 
     .noSelectedContent {
         align-items: flex-start;
         background-color: var(--bodyBg);
+        border: 1px solid transparent;
+        bottom: 80px;
+        left: 20rem;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         justify-content: space-around;
-        position: relative;
+        position: fixed;
+        right: 0;
+        top: 80px;
+        transition: 0.3s ease border;
         z-index: 90;
     }
 

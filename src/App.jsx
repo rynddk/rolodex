@@ -7,6 +7,7 @@ import axios from 'axios';
 import { formatDataForExport } from './utils/export';
 import { formatRequestUrl } from './utils/api';
 import { sortAlphaByParam } from './utils/sorting';
+import styles from './components/lists/contactList.module.css';
 
 export default class App extends Component {
     constructor(props) {
@@ -71,13 +72,11 @@ export default class App extends Component {
         });
     }
 
-    renderList(cards) {
+    renderPagination() {
         const { pageCount } = this.state;
 
         return (
-            <>
-                <ContactList contacts={cards} refProp={this.contactList} />
-
+            <footer>
                 <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
                     <ReactPaginate
                         previousLabel="prev"
@@ -107,12 +106,18 @@ export default class App extends Component {
                         previousLinkClassName="rolo-pagination-link"
                     />
                 </nav>
-            </>
+            </footer>
         );
     }
 
     renderLoader = () => (
-        <p className="rolo-loading-text">Loading...</p>
+        <>
+            <main id="main" className="rolo-main-content" />
+
+            <aside id="contact-details" className={styles.noSelectedContent}>
+                <p className="rolo-loading-text">Loading...</p>
+            </aside>
+        </>
     );
 
     render() {
@@ -125,9 +130,9 @@ export default class App extends Component {
 
                 <Header currentContacts={exportData} currentPage={currentPage} />
 
-                <main id="main" className="rolo-main-content">
-                    { cards.length ? this.renderList(cards) : this.renderLoader() }
-                </main>
+                { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : this.renderLoader() }
+
+                {this.renderPagination()}
             </>
         );
     }

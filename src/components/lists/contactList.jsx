@@ -7,57 +7,63 @@ const renderContact = (contact, itemId, handleClose) => <ContactCard data={conta
 
 const renderInstructions = () => <p className={styles.instructions}>Select a contact to view their details.</p>;
 
+const renderItem = (contact, index, selectedItem, setSelectedItem) => {
+    const { id = {}, name = {} } = contact;
+    const { first = '', last = '' } = name;
+    const uniqueId = id?.value || `${first}-${index}`;
+    const itemId = uniqueId.replace(/\s+/gu, '-').replace(/\./gu, '').toLowerCase();
+
+    return (
+        <li
+            key={itemId}
+            className={styles.contactListItem}
+            data-selected={selectedItem === itemId}
+        >
+            <a
+                href={`/${itemId}`}
+                onClick={(event) => {
+                    event.preventDefault();
+                    document.getElementById('contact-detail').focus();
+                    setSelectedItem({
+                        data: contact,
+                        itemId
+                    });
+                }}
+                id={itemId}
+                role="button"
+                aria-label={`View contact information for ${first} ${last}`}
+                className={styles.contactLink}
+            >
+                <ContactCard data={contact} />
+            </a>
+        </li>
+    );
+};
+
 const ContactList = ({ contacts = [], refProp }) => {
     const [selectedItem, setSelectedItem] = useState(0);
     const handleClose = () => setSelectedItem();
 
     return (
-        <div className={styles.contactListContainer}>
-            <ul
-                aria-activedescendant={selectedItem?.itemId || null}
-                aria-label="Contact List"
-                className={styles.contactList}
-                ref={refProp}
-                tabIndex="-1"
-            >
-                {contacts.map((contact, index) => {
-                    const { id = {}, name = {} } = contact;
-                    const { first = '', last = '' } = name;
-                    const uniqueId = id?.value || `${first}-${index}`;
-                    const itemId = uniqueId.replace(/\s+/gu, '-').replace(/\./gu, '').toLowerCase();
+        <>
+            <main id="main" className="rolo-main-content">
+                <div className={styles.contactListContainer}>
+                    <ul
+                        aria-activedescendant={selectedItem?.itemId || null}
+                        aria-label="Contact List"
+                        className={styles.contactList}
+                        ref={refProp}
+                        tabIndex="-1"
+                    >
+                        {contacts.map((contact, index) => renderItem(contact, index, selectedItem?.itemId, setSelectedItem))}
+                    </ul>
+                </div>
+            </main>
 
-                    return (
-                        <li
-                            key={itemId}
-                            className={styles.contactListItem}
-                            data-selected={selectedItem?.itemId === itemId}
-                        >
-                            <a
-                                href={`/${itemId}`}
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    document.getElementById('contact-detail').focus();
-                                    setSelectedItem({
-                                        data: contact,
-                                        itemId
-                                    });
-                                }}
-                                id={itemId}
-                                role="button"
-                                aria-label={`View contact information for ${first} ${last}`}
-                                className={styles.contactLink}
-                            >
-                                <ContactCard data={contact} />
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul>
-
-            <div className={selectedItem && selectedItem?.data ? styles.selectedContact : styles.noSelectedContent} id="contact-detail" tabIndex="-1">
+            <aside className={selectedItem && selectedItem?.data ? styles.selectedContact : styles.noSelectedContent} id="contact-detail" tabIndex="-1">
                 {selectedItem && selectedItem?.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
-            </div>
-        </div>
+            </aside>
+        </>
     );
 };
 
