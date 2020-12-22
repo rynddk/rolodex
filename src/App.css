@@ -5,9 +5,11 @@
     color: #FFF;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 80px);
     justify-content: center;
-    min-height: 100vh;
-    padding-bottom: 92px;
+    overflow: hidden;
+    padding-bottom: 80px;
+    width: 100%;
 }
 
 .rolo-visually-hidden-link {
