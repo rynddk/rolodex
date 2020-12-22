@@ -30,6 +30,7 @@ const ContactList = ({ contacts = [], refProp }) => {
                         <li
                             key={itemId}
                             className={styles.contactListItem}
+                            data-selected={selectedItem?.itemId === itemId}
                         >
                             <a
                                 href={`/${itemId}`}

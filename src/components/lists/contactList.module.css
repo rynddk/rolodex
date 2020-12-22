@@ -55,13 +55,13 @@
     color: var(--active);
 }
 
-[aria-selected='true'] .contactLink {
+[data-selected='true'] .contactLink {
     background-color: var(--contactShadow);
     border-color: var(--active);
     text-decoration: none;
 }
 
-[aria-selected='true'] .contactLink:before {
+[data-selected='true'] .contactLink:before {
     background-color: var(--active);
 }
 
