@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/rolodex/static/css/main.708cac96.chunk.css",
-    "main.js": "/rolodex/static/js/main.b88b58fe.chunk.js",
-    "main.js.map": "/rolodex/static/js/main.b88b58fe.chunk.js.map",
-    "runtime-main.js": "/rolodex/static/js/runtime-main.11c6f6b1.js",
-    "runtime-main.js.map": "/rolodex/static/js/runtime-main.11c6f6b1.js.map",
-    "static/js/2.6c01d960.chunk.js": "/rolodex/static/js/2.6c01d960.chunk.js",
-    "static/js/2.6c01d960.chunk.js.map": "/rolodex/static/js/2.6c01d960.chunk.js.map",
-    "static/js/3.bd9839d0.chunk.js": "/rolodex/static/js/3.bd9839d0.chunk.js",
-    "static/js/3.bd9839d0.chunk.js.map": "/rolodex/static/js/3.bd9839d0.chunk.js.map",
+    "main.css": "/rolodex/static/css/main.507b4da9.chunk.css",
+    "main.js": "/rolodex/static/js/main.a839c58c.chunk.js",
+    "main.js.map": "/rolodex/static/js/main.a839c58c.chunk.js.map",
+    "runtime-main.js": "/rolodex/static/js/runtime-main.2ca41ce6.js",
+    "runtime-main.js.map": "/rolodex/static/js/runtime-main.2ca41ce6.js.map",
+    "static/js/2.c8c7ae70.chunk.js": "/rolodex/static/js/2.c8c7ae70.chunk.js",
+    "static/js/2.c8c7ae70.chunk.js.map": "/rolodex/static/js/2.c8c7ae70.chunk.js.map",
+    "static/js/3.2f6ca66f.chunk.js": "/rolodex/static/js/3.2f6ca66f.chunk.js",
+    "static/js/3.2f6ca66f.chunk.js.map": "/rolodex/static/js/3.2f6ca66f.chunk.js.map",
     "index.html": "/rolodex/index.html",
-    "static/css/main.708cac96.chunk.css.map": "/rolodex/static/css/main.708cac96.chunk.css.map",
-    "static/js/2.6c01d960.chunk.js.LICENSE.txt": "/rolodex/static/js/2.6c01d960.chunk.js.LICENSE.txt",
+    "static/css/main.507b4da9.chunk.css.map": "/rolodex/static/css/main.507b4da9.chunk.css.map",
+    "static/js/2.c8c7ae70.chunk.js.LICENSE.txt": "/rolodex/static/js/2.c8c7ae70.chunk.js.LICENSE.txt",
     "static/media/close.130f0f13.svg": "/rolodex/static/media/close.130f0f13.svg",
     "static/media/download.71565b09.svg": "/rolodex/static/media/download.71565b09.svg",
     "static/media/email.a79cdfae.svg": "/rolodex/static/media/email.a79cdfae.svg",
     "static/media/phone.b5373d53.svg": "/rolodex/static/media/phone.b5373d53.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.11c6f6b1.js",
-    "static/js/2.6c01d960.chunk.js",
-    "static/css/main.708cac96.chunk.css",
-    "static/js/main.b88b58fe.chunk.js"
+    "static/js/runtime-main.2ca41ce6.js",
+    "static/js/2.c8c7ae70.chunk.js",
+    "static/css/main.507b4da9.chunk.css",
+    "static/js/main.a839c58c.chunk.js"
   ]
 }
