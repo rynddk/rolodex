@@ -1,13 +1,16 @@
 .contactListContainer {
     background-color: #FFF;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 160px);
+    overflow: hidden;
     width: 100%;
 }
 
 .contactList {
     box-sizing: border-box;
     list-style: none;
+    height: calc(100vh - 160px);
     margin: 0;
+    overflow-y: auto;
     padding: 0;
     width: 100%;
 }
