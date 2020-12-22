@@ -1,5 +1,3 @@
-'use strict';
-
 /* eslint-disable max-lines */
 
 // constants for rules that use numeric options
@@ -335,7 +333,7 @@ module.exports = {
         'react/default-props-match-prop-types': ['error', { allowRequiredDefaults: false }],
         'react/destructuring-assignment': 0,
         'react/display-name': 0,
-        'react/forbid-component-props': 'error',
+        'react/forbid-component-props': 0,
         'react/forbid-dom-props': 0,
         'react/forbid-elements': 0,
         'react/forbid-foreign-prop-types': 'error',

@@ -7,7 +7,7 @@ import styles from './header.module.css';
 const renderButton = (contacts, currentPage) => (
     <div className={styles.actions}>
         <CSVLink
-            class={styles.downloadButton}
+            className={styles.downloadButton}
             aria-label={`Download these ${contacts.length} contacts`}
             filename={`Contacts_Page-${currentPage}`}
             data={contacts}
