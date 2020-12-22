@@ -1,6 +1,6 @@
 # Rolodex
 
-A single page app for a user directory using randomuser.me as an API.
+A single page app for a user directory using randomuser.me as an API. [Check out Rolodex online](https://rynddk.github.io/rolodex/).
 
 ![alt text](https://raw.githubusercontent.com/rynddk/rolodex/main/preview.png "A preview of the Rolodex app")
 
