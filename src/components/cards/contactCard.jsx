@@ -55,6 +55,7 @@ const renderDetails = (data, contactName) => {
                 ({pronouns})
             </p>
 
+            <h3 className="rolo-hidden">{contactName}&apos;s Contact Details</h3>
             <address className={styles.contactAddress}>
                 <a href={`mailto:${email}`} className={styles.contactDetail} aria-label={`Email ${contactName}`}>
                     <span className={styles.addressIcon} aria-hidden="true"><ReactEmail /></span>

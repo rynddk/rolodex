@@ -82,7 +82,14 @@ export default class App extends Component {
                     <ReactPaginate
                         previousLabel="prev"
                         nextLabel="next"
-                        breakLabel="..."
+                        breakLabel="more pages"
+                        ariaLabelBuilder={(page, selected) => {
+                            if (selected) {
+                                return 'Current page';
+                            }
+
+                            return `Go to page ${page}`;
+                        }}
                         pageCount={pageCount}
                         marginPagesDisplayed={1}
                         pageRangeDisplayed={3}
@@ -92,8 +99,8 @@ export default class App extends Component {
                         pageLinkClassName="rolo-pagination-link"
                         activeClassName="rolo-pagination-active"
                         activeLinkClassName="rolo-pagination-link-active"
-                        breakClassName="rolo-pagination-item"
-                        breakLinkClassName="rolo-pagination-link"
+                        breakClassName="rolo-pagination-break-item rolo-pagination-item"
+                        breakLinkClassName="rolo-break-link rolo-pagination-link"
                         nextClassName="rolo-pagination-item"
                         nextLinkClassName="rolo-pagination-link"
                         previousClassName="rolo-pagination-item"
