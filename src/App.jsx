@@ -69,23 +69,28 @@ export default class App extends Component {
 
         this.setState({
             cards: slicedData,
-            currentPage: selectedPage,
+            currentPage: selectedPage + 1,
             offset
         });
     }
 
-    renderList(cards) {
+    renderPagination() {
         const { pageCount } = this.state;
 
         return (
-            <>
-                <ContactList contacts={cards} refProp={this.contactList} />
-
+            <footer className="rolo-footer" id="footer">
                 <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
                     <ReactPaginate
                         previousLabel="prev"
                         nextLabel="next"
-                        breakLabel="..."
+                        breakLabel="more pages"
+                        ariaLabelBuilder={(page, selected) => {
+                            if (selected) {
+                                return 'Current page';
+                            }
+
+                            return `Go to page ${page}`;
+                        }}
                         pageCount={pageCount}
                         marginPagesDisplayed={1}
                         pageRangeDisplayed={3}
@@ -95,15 +100,15 @@ export default class App extends Component {
                         pageLinkClassName="rolo-pagination-link"
                         activeClassName="rolo-pagination-active"
                         activeLinkClassName="rolo-pagination-link-active"
-                        breakClassName="rolo-pagination-item"
-                        breakLinkClassName="rolo-pagination-link"
+                        breakClassName="rolo-pagination-break-item rolo-pagination-item"
+                        breakLinkClassName="rolo-break-link rolo-pagination-link"
                         nextClassName="rolo-pagination-item"
                         nextLinkClassName="rolo-pagination-link"
                         previousClassName="rolo-pagination-item"
                         previousLinkClassName="rolo-pagination-link"
                     />
                 </nav>
-            </>
+            </footer>
         );
     }
 
@@ -113,13 +118,15 @@ export default class App extends Component {
 
         return (
             <>
-                <a href="#main" className="rolo-visually-hidden-link">Skip to Contact List</a>
+                <div id="content" className="rolo-main-content">
+                    <a href="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</a>
 
-                <Header currentContacts={exportData} currentPage={currentPage} />
+                    <Header currentContacts={exportData} currentPage={currentPage} />
+                </div>
 
-                <main id="main" className="rolo-main-content">
-                    { cards.length ? this.renderList(cards) : <Loading /> }
-                </main>
+                { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : <Loading /> }
+
+                {this.renderPagination()}
             </>
         );
     }

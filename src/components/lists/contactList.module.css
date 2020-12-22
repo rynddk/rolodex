@@ -1,8 +1,12 @@
 .contactListContainer {
     background-color: var(--bodyBg);
+    bottom: 80px;
     min-height: calc(100vh - 160px);
     overflow: hidden;
+    position: fixed;
+    top: 80px;
     width: 100%;
+    z-index: 50;
 }
 
 .contactList {
@@ -68,6 +72,7 @@
 .selectedContact {
     align-items: flex-start;
     background-color: var(--bodyBg);
+    border: 1px solid transparent;
     bottom: 0;
     left: 0;
     display: flex;
@@ -77,7 +82,18 @@
     position: fixed;
     right: 0;
     top: 0;
+    transition: 0.3s ease border;
     z-index: 90;
+}
+
+.noSelectedContent {
+    display: none;
+}
+
+.selectedContact:focus,
+.noSelectedContent:focus {
+    border-color: var(--contactFocus);
+    outline: none;
 }
 
 .instructions {
@@ -97,17 +113,26 @@
     }
 
     .selectedContact {
-        position: relative;
+        bottom: 80px;
+        left: 20rem;
+        right: 0;
+        top: 80px;
     }
 
     .noSelectedContent {
         align-items: flex-start;
         background-color: var(--bodyBg);
+        border: 1px solid transparent;
+        bottom: 80px;
+        left: 20rem;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         justify-content: space-around;
-        position: relative;
+        position: fixed;
+        right: 0;
+        top: 80px;
+        transition: 0.3s ease border;
         z-index: 90;
     }
 

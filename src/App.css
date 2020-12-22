@@ -5,17 +5,30 @@
     color: var(--bodyBg);
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 80px);
-    justify-content: center;
+    height: 100vh;
     overflow: hidden;
-    padding-bottom: 80px;
+    padding: 0;
     width: 100%;
+}
+
+.rolo-footer {
+    align-items: center;
+    background-color: var(--highlight);
+    bottom: 0;
+    box-sizing: border-box;
+    color: var(--headingText);
+    display: flex;
+    height: 80px;
+    left: 0;
+    padding: 16px;
+    position: fixed;
+    right: 0;
 }
 
 .rolo-visually-hidden-link {
     background-color: var(--visuallyHiddenBg);
-    border: 2px solid var(--highlight);
-    color: var(--highlight);
+    border: 2px solid var(--visuallyHiddenBorder);
+    color: var(--visuallyHiddenText);
     display: inline-block;
     left: -72rem;
     padding: 16px;
@@ -25,7 +38,19 @@
 }
 
 .rolo-visually-hidden-link:focus {
+    background-color: var(--visuallyHiddenBg);
+    border: 2px solid var(--highlight);
+    color: var(--highlight);
     left: 1rem;
+}
+
+.rolo-loading-text {
+    box-sizing: border-box;
+    color: var(--headingText);
+    display: block;
+    padding: 16px;
+    text-align: center;
+    width: 100%;
 }
 
 .rolo-hidden {
@@ -40,14 +65,13 @@
 }
 
 .rolo-pagination {
-    background-color: var(--highlight);
-    bottom: 0;
+    box-sizing: border-box;
     color: var(--headingText);
-    display: flex;
-    left: 0;
-    padding: 16px;
-    position: fixed;
-    right: 0;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+    width: auto;
 }
 
 .rolo-pagination-list {
@@ -55,7 +79,18 @@
     font-size: 0.875rem;
     list-style: none;
     margin: 0 auto;
-    padding: 16px;
+    padding: 0;
+}
+
+.rolo-pagination-item {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 30px;
+    vertical-align: top;
+}
+
+.rolo-pagination-break-item {
+    width: 30px;
 }
 
 .rolo-pagination-link-active {
@@ -66,8 +101,34 @@
 .rolo-pagination-link {
     border: 1px solid transparent;
     cursor: pointer;
+    display: block;
+    height: 28px;
+    line-height: 28px;
     padding: 5px 10px;
     transition: 0.3s ease border;
+}
+
+.rolo-break-link {
+    font-size: 0;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    text-indent: 90px;
+    width: 30px;
+}
+
+.rolo-break-link:before {
+    content: '...';
+    font-size: 0.875rem;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    text-indent: 0;
+    width: 30px;
 }
 
 .rolo-pagination-link:hover,

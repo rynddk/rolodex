@@ -1,5 +1,6 @@
 {
   "name": "rolodex",
+  "homepage": "https://rynddk.github.io/rolodex/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +11,8 @@
     "react-dom": "17.0.1",
     "react-paginate": "6.5.0",
     "react-scripts": "4.0.1",
-    "web-vitals": "0.2.4"
+    "web-vitals": "0.2.4",
+    "wicg-inert": "3.1.0"
   },
   "devDependencies": {
     "axe-core": "4.1.1",
@@ -19,11 +21,12 @@
     "cypress-axe": "0.12.0",
     "eslint": "7.16.0",
     "eslint-plugin-react": "7.21.5",
+    "gh-pages": "3.1.0",
     "stylelint": "13.8.0"
   },
   "scripts": {
     "start": "npm run lint && react-scripts start",
-    "build": "npm run lint && react-scripts build",
+    "build": "react-scripts build",
     "test": "npm run lint && cypress open",
     "eject": "react-scripts eject",
     "lint": "npm run lint:css && npm run lint:js",

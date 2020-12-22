@@ -8,11 +8,8 @@ body {
 }
 
 .rolo-app {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
+    display: block;
     height: 100vh;
-    justify-content: space-between;
     overflow: hidden;
 }
 
@@ -22,13 +19,25 @@ img {
     width: 100%;
 }
 
-/* stylelint-disable custom-property-empty-line-before, rule-empty-line-before */
+/* stylelint-disable */
+[inert] {
+    pointer-events: all !important;
+    cursor: default !important;
+}
+
+[inert],
+[inert] * {
+    user-select: auto !important;
+}
+
 :root {
     --loadingBg: #FCFCFC;
     --loaderBg1: #282C34;
     --loaderBg2: #47CCDE;
     --loaderBg3: #008390;
     --visuallyHiddenBg: #FAFAFA;
+    --visuallyHiddenBorder: #008390;
+    --visuallyHiddenText: #008390;
     --bodyBg: #FFF;
     --bodyText: #303030;
     --headingText: #000;
@@ -38,16 +47,17 @@ img {
     --pagingationHover: #47CCDE;
     --break: #F0F0F0;
     --contactShadow: #FAFAFA;
+    --contactFocus: #CACACA;
+    --closeFocus: #008390;
     --shadow: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --loadingBg: #818284;
+        --loadingBg: #282C34;
         --loaderBg1: #FAFAFA;
-        --loaderBg2: #F0F0F0;
+        --loaderBg2: #008390;
         --loaderBg3: #47CCDE;
-        --visuallyHiddenBg: #818284;
         --bodyBg: #282C34;
         --bodyText: #FFF;
         --headingText: #FAFAFA;
@@ -57,8 +67,9 @@ img {
         --pagingationHover: #008390;
         --break: #000;
         --contactShadow: #2A2A2A;
+        --contactFocus: #008390;
+        --closeFocus: #FFF;
         --shadow: rgba(0, 0, 0, 0.5);
     }
 }
-
-/* stylelint-enable custom-property-empty-line-before, rule-empty-line-before */
+/* stylelint-enable */

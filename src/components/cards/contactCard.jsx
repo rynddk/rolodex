@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ReactComponent as ReactClose } from '../../assets/icons/close.svg';
 import { ReactComponent as ReactEmail } from '../../assets/icons/email.svg';
 import { ReactComponent as ReactPhone } from '../../assets/icons/phone.svg';
 import styles from './contactCard.module.css';
@@ -7,8 +8,10 @@ import styles from './contactCard.module.css';
 const buttonClick = (event, contactId, onClose) => {
     event.preventDefault();
     const contactLink = document.getElementById(contactId);
-    contactLink.focus();
     onClose();
+
+    // wait for the update, then focus the detail
+    setTimeout(() => contactLink.focus(), 0);
 
     return null;
 };
@@ -37,7 +40,7 @@ const renderButton = (contactId, onClose) => (
         onClick={(event) => buttonClick(event, contactId, onClose)}
         className={styles.closeButton}
     >
-        <span className={styles.buttonText} aria-hidden="true">x</span>
+        <span className={styles.buttonText} aria-hidden="true"><ReactClose /></span>
     </a>
 );
 
@@ -54,6 +57,7 @@ const renderDetails = (data, contactName) => {
                 ({pronouns})
             </p>
 
+            <h3 className="rolo-hidden">{contactName}&apos;s Contact Details</h3>
             <address className={styles.contactAddress}>
                 <a href={`mailto:${email}`} className={styles.contactDetail} aria-label={`Email ${contactName}`}>
                     <span className={styles.addressIcon} aria-hidden="true"><ReactEmail /></span>
