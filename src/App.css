@@ -1,8 +1,8 @@
 .rolo-main-content {
     align-items: center;
-    background-color: #282C34;
+    background-color: var(--highlight);
     box-sizing: border-box;
-    color: #FFF;
+    color: var(--bodyBg);
     display: flex;
     flex-direction: column;
     height: calc(100vh - 80px);
@@ -13,9 +13,9 @@
 }
 
 .rolo-visually-hidden-link {
-    background-color: #FFF;
-    border: 2px solid #282C34;
-    color: #282C34;
+    background-color: var(--bodyBg);
+    border: 2px solid var(--highlight);
+    color: var(--highlight);
     display: inline-block;
     left: -72rem;
     padding: 16px;
@@ -40,8 +40,9 @@
 }
 
 .rolo-pagination {
-    background-color: #282C34;
+    background-color: var(--highlight);
     bottom: 0;
+    color: var(--headingText);
     display: flex;
     left: 0;
     padding: 16px;
@@ -58,8 +59,8 @@
 }
 
 .rolo-pagination-link-active {
-    background-color: #008390;
-    color: #FFF;
+    background-color: var(--active);
+    color: var(--bodyBg);
 }
 
 .rolo-pagination-link {
@@ -71,5 +72,5 @@
 
 .rolo-pagination-link:hover,
 .rolo-pagination-link:focus {
-    border: 1px solid #47CCDE;
+    border: 1px solid var(--pagingationHover);
 }
