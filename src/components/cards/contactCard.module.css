@@ -1,8 +1,8 @@
 .contactCard {
     align-items: center;
     box-sizing: border-box;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    color: #000;
+    box-shadow: 0 0 15px var(--shadow);
+    color: var(--headingText);
     display: flex;
     justify-content: space-between;
     padding: 16px;
@@ -11,10 +11,10 @@
 }
 
 .closeButton {
-    background-color: #333;
-    border: 2px solid #FFF;
+    background-color: var(--bodyText);
+    border: 2px solid var(--bodyBg);
     border-radius: 30px;
-    color: #FFF;
+    color: var(--bodyBg);
     height: 48px;
     position: absolute;
     right: 1rem;
@@ -25,10 +25,10 @@
 
 .closeButton:hover,
 .closeButton:focus {
-    background-color: #FFF;
-    border: 2px solid #008390;
+    background-color: var(--bodyBg);
+    border: 2px solid var(--active);
     border-radius: 30px;
-    color: #008390;
+    color: var(--active);
     height: 48px;
     position: absolute;
     right: 1rem;
@@ -67,7 +67,7 @@
 }
 
 .contactName {
-    color: #000;
+    color: var(--headingText);
     font-size: 1.25rem;
     line-height: 1;
     margin: 0;
@@ -78,7 +78,7 @@
 }
 
 .contactPronouns {
-    color: #333;
+    color: var(--bodyText);
     display: block;
     font-size: 0.75rem;
     line-height: 1;
@@ -88,7 +88,7 @@
 }
 
 .contactDetail {
-    color: #333;
+    color: var(--bodyText);
     display: block;
     font-size: 1rem;
     line-height: 1.25;
@@ -97,7 +97,7 @@
 
 .contactDetail:hover,
 .contactDetail:focus {
-    color: #008390;
+    color: var(--active);
 }
 
 .contactAddress {
@@ -118,7 +118,7 @@
 
 .fullContactCard {
     align-items: flex-start;
-    background-color: #FFF;
+    background-color: var(--bodyBg);
     box-sizing: border-box;
     display: block;
     min-height: 100%;
@@ -128,7 +128,7 @@
 }
 
 .fullContactCard:before {
-    background-color: #008390;
+    background-color: var(--contactHighlight);
     border-radius: 4px 4px 0 0;
     content: '';
     display: block;
@@ -161,7 +161,7 @@
 }
 
 .fullContactCard .contactPronouns {
-    color: #333;
+    color: var(--bodyText);
     display: block;
     font-size: 0.75rem;
     line-height: 1;
