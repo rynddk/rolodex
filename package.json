@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "npm run lint && react-scripts start",
-    "build": "npm run lint && react-scripts build",
+    "build": "react-scripts build",
     "test": "npm run lint && cypress open",
     "eject": "react-scripts eject",
     "lint": "npm run lint:css && npm run lint:js",
