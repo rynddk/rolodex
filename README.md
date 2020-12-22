@@ -20,8 +20,7 @@ This project uses the `npm` package manager and `Node.js`. You should be using a
 
 Setup for this should be rather straightforward.
 
-1. Ensure your node version is greater than `10.23.0` by typing `node -v` in your terminal.
-  - If you need to update your version of node, look in to a [Node package manager](https://nodejs.org/en/download/package-manager/).
+1. Ensure your node version is greater than `10.23.0` by typing `node -v` in your terminal. If you need to update your version of node, look in to a [Node package manager](https://nodejs.org/en/download/package-manager/).
 1. Install dependencies by running `npm i`.
 1. Start the app by running `npm start`.
 
