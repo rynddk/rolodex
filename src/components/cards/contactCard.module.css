@@ -148,11 +148,9 @@
     box-sizing: border-box;
     display: block;
     height: 100vh;
-    height: -webkit-fill-available;
     overflow-y: auto;
     padding-bottom: 96px;
     padding-top: calc(20vh + 52px);
-    position: relative;
     text-align: center;
     width: 100%;
 }
@@ -228,12 +226,17 @@
         left: 20rem;
         bottom: 80px;
     }
+
+    .fullContactCard {
+        height: calc(100vh - 160px);
+        position: relative;
+    }
 }
 
 @media screen and (min-width: 60rem) {
     .fullContactCard {
-        border-radius: 6px;
         padding-top: calc(25vh + 80px);
+        position: relative;
     }
 
     .fullContactCard:before {
