@@ -2,12 +2,15 @@ import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
 import Header from './components/header/header';
-import ReactPaginate from 'react-paginate';
+import { Link } from '@reach/router';
+import Pagination from './components/pagination/pagination';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { formatDataForExport } from './utils/export';
 import { formatRequestUrl } from './utils/api';
+import listStyles from './components/lists/contactList.module.css';
+import paginationStyles from './components/pagination/pagination.module.css';
 import { sortAlphaByParam } from './utils/sorting';
-import styles from './components/lists/contactList.module.css';
 
 export default class App extends Component {
     constructor(props) {
@@ -15,17 +18,12 @@ export default class App extends Component {
 
         this.state = {
             allContacts: [],
-            cards: [],
-            currentPage: 0,
-            offset: 0,
             pageCount: 0,
             perPage: 10
         };
 
         this.contactList = React.createRef();
         this.focusContactList = this.focusContactList.bind(this);
-
-        this.handlePageClick = this.handlePageClick.bind(this);
     }
 
     componentDidMount() {
@@ -38,15 +36,20 @@ export default class App extends Component {
 
         axios.get(requestUrl)
             .then((res) => {
-                const { offset, perPage } = this.state;
+                const { perPage } = this.state;
                 const { data: { results } } = res;
+                results.map((item, index) => {
+                    const { id = {}, name: { first = '', last = '' } } = item;
+                    const uniqueId = id?.value || `${first}-${index}`;
+                    item.itemId = uniqueId.replace(/\s+/gu, '-').replace(/\./gu, '').toLowerCase();
+                    item.contactUrl = encodeURIComponent(`${first}-${last}`);
+
+                    return item;
+                });
                 const alphabeticalData = sortAlphaByParam(results, 'first', 'last');
-                const slicedData = alphabeticalData.slice(offset, offset + perPage);
 
                 this.setState({
-                    allContacts: results,
-                    cards: slicedData,
-                    currentPage: 1,
+                    allContacts: alphabeticalData,
                     pageCount: Math.ceil(results.length / perPage)
                 });
             });
@@ -57,86 +60,80 @@ export default class App extends Component {
         window.scrollTo(0, 0);
     }
 
-    handlePageClick(event) {
-        const selectedPage = event.selected;
-        const { state: { allContacts, perPage } } = this;
-        const offset = selectedPage * perPage;
-        const slicedData = allContacts.slice(offset, offset + perPage);
-
-        this.focusContactList();
-
-        this.setState({
-            cards: slicedData,
-            currentPage: selectedPage + 1,
-            offset
-        });
-    }
-
-    renderPagination() {
-        const { pageCount } = this.state;
-
-        return (
-            <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
-                <ReactPaginate
-                    previousLabel="prev"
-                    nextLabel="next"
-                    breakLabel="more pages"
-                    ariaLabelBuilder={(page, selected) => {
-                        if (selected) {
-                            return 'Current page';
-                        }
-
-                        return `Go to page ${page}`;
-                    }}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={1}
-                    pageRangeDisplayed={3}
-                    onPageChange={this.handlePageClick}
-                    containerClassName="rolo-pagination-list"
-                    pageClassName="rolo-pagination-item"
-                    pageLinkClassName="rolo-pagination-link"
-                    activeClassName="rolo-pagination-active"
-                    activeLinkClassName="rolo-pagination-link-active"
-                    breakClassName="rolo-pagination-break-item rolo-pagination-item"
-                    breakLinkClassName="rolo-break-link rolo-pagination-link"
-                    nextClassName="rolo-pagination-item"
-                    nextLinkClassName="rolo-pagination-link"
-                    previousClassName="rolo-pagination-item"
-                    previousLinkClassName="rolo-pagination-link"
-                />
-            </nav>
-        );
-    }
-
     renderLoader = () => (
         <>
             <main id="rolodex" />
 
-            <aside id="contact-list" className={styles.noSelectedContent} tabIndex="-1">
+            <aside id="contact-list" className={listStyles.noSelectedContent} tabIndex="-1">
                 <p className="rolo-loading-text">Loading...</p>
             </aside>
         </>
     );
 
+    getPageCards(page) {
+        const { allContacts, perPage } = this.state;
+        const pageOffset = parseInt(perPage, 10) * parseInt(page - 1, 10);
+
+        return allContacts.slice(pageOffset, pageOffset + perPage);
+    }
+
+    renderPagination(pageNum) {
+        const { pageCount } = this.state;
+        const { contactId } = this.props;
+
+        return (
+            <nav className={paginationStyles.listContainer} aria-label="Contact List Page Navigation">
+                <Pagination current={pageNum} total={pageCount} contactId={contactId} />
+            </nav>
+        );
+    }
+
     render() {
-        const { cards, currentPage, pageCount } = this.state;
-        const exportData = formatDataForExport(cards);
+        const { allContacts, pageCount } = this.state;
+        const { contactId, location: { search } } = this.props;
+        const searchParamTrim = 6;
+        const selectedPage = search.substr(searchParamTrim);
+        const pageNum = selectedPage ? parseInt(selectedPage, 10) : 1;
+        const displayedContacts = this.getPageCards(pageNum);
+        const exportData = formatDataForExport(displayedContacts);
 
         return (
             <>
                 <div id="content" className="rolo-main-content">
-                    <a href="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</a>
+                    <Link to="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</Link>
 
-                    <Header currentContacts={exportData} currentPage={currentPage} />
+                    <Header currentContacts={exportData} currentPage={pageNum} />
                 </div>
 
-                { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : this.renderLoader() }
+                { displayedContacts.length ? (
+                    <ContactList
+                        allContacts={allContacts}
+                        contacts={displayedContacts}
+                        currentContact={contactId}
+                        refProp={this.contactList}
+                        queryParams={search}
+                    />
+                ) : this.renderLoader() }
 
 
                 <footer className="rolo-footer" id="footer">
-                    {pageCount > 1 ? this.renderPagination() : null}
+                    {pageCount > 1 ? this.renderPagination(pageNum) : null}
                 </footer>
             </>
         );
     }
 }
+
+App.defaultProps = {
+    contactId: '',
+    location: {
+        search: ''
+    }
+};
+
+App.propTypes = {
+    contactId: PropTypes.string,
+    location: PropTypes.shape({
+        search: PropTypes.string
+    })
+};

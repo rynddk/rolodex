@@ -1,5 +1,6 @@
 import './index.css';
 import 'wicg-inert';
+import { LocationProvider, Router } from '@reach/router';
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,7 +8,11 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <LocationProvider>
+            <Router>
+                <App path="/rolodex/*contactId" />
+            </Router>
+        </LocationProvider>
     </React.StrictMode>,
     document.getElementById('main')
 );
