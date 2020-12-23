@@ -83,7 +83,7 @@
     right: 0;
     top: 0;
     transition: 0.3s ease border;
-    z-index: 90;
+    z-index: 100;
 }
 
 .noSelectedContent {
@@ -133,7 +133,7 @@
         right: 0;
         top: 80px;
         transition: 0.3s ease border;
-        z-index: 90;
+        z-index: 100;
     }
 
     .instructions {
