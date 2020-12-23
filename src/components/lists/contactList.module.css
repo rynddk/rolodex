@@ -6,13 +6,12 @@
     top: 80px;
     width: 100%;
     z-index: 50;
-    -webkit-padding-after: 160px;
 }
 
 .contactList {
     box-sizing: border-box;
     list-style: none;
-    height: calc(100vh - 160px);
+    height: calc(100% - 160px);
     margin: 0;
     overflow-y: auto;
     padding: 0;
