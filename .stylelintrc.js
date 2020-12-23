@@ -164,7 +164,14 @@ module.exports = {
                 ]
             }
         ],
-        "property-no-vendor-prefix": true,
+        "property-no-vendor-prefix": [
+            true,
+            {
+                ignoreProperties: [
+                    "padding-after"
+                ]
+            }
+        ],
         "rule-empty-line-before": [
             "always",
             {
