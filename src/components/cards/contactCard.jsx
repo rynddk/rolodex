@@ -1,12 +1,16 @@
+import { CSVLink } from 'react-csv';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ReactComponent as ReactClose } from '../../assets/icons/close.svg';
+import { ReactComponent as ReactDownload } from '../../assets/icons/download.svg';
 import { ReactComponent as ReactEmail } from '../../assets/icons/email.svg';
 import { ReactComponent as ReactPhone } from '../../assets/icons/phone.svg';
+import { formatDataForExport } from '../../utils/export';
+import headerStyles from '../header/header.module.css';
 import styles from './contactCard.module.css';
 
-const buttonClick = (event, contactId, onClose) => {
-    event.preventDefault();
+const buttonClick = (contactId, onClose) => {
     const contactLink = document.getElementById(contactId);
     onClose();
 
@@ -32,17 +36,32 @@ const getPronouns = (gender) => {
     return 'they/them';
 };
 
-const renderButton = (contactId, onClose) => (
-    <a
-        href="/"
+const renderCloseButton = (contactId, onClose, queryParams) => (
+    <Link
+        to={`/rolodex${queryParams || '/'}`}
         role="button"
         arial-label="Go back to contact list"
-        onClick={(event) => buttonClick(event, contactId, onClose)}
+        onClick={() => buttonClick(contactId, onClose)}
         className={styles.closeButton}
     >
         <span className={styles.buttonText} aria-hidden="true"><ReactClose /></span>
-    </a>
+    </Link>
 );
+
+const renderDownloadLink = (data, name) => {
+    const exportData = formatDataForExport([data]);
+
+    return (
+        <CSVLink
+            className={headerStyles.downloadButton}
+            aria-label={`Download ${name}'s contact information`}
+            filename={`Contact Info - ${name}`}
+            data={exportData}
+        >
+            <span className={styles.buttonText} aria-hidden="true"><ReactDownload /></span>
+        </CSVLink>
+    );
+};
 
 const renderDetails = (data, contactName) => {
     const { gender, email, phone } = data;
@@ -68,11 +87,17 @@ const renderDetails = (data, contactName) => {
                     {phone}
                 </a>
             </address>
+
+            <footer className={styles.contactActions}>
+                <div className={styles.actionButtonWrapper}>
+                    {renderDownloadLink(data, contactName)}
+                </div>
+            </footer>
         </>
     );
 };
 
-const ContactCard = ({ contactId, data, details, onClose }) => {
+const ContactCard = ({ contactId, data, details, onClose, queryParams }) => {
     const { name, picture } = data;
     const contactName = `${name.first} ${name.last}`;
 
@@ -82,7 +107,7 @@ const ContactCard = ({ contactId, data, details, onClose }) => {
                 <source srcSet={`${picture.thumbnail} 300w, ${picture.medium} 480w, ${picture.large} 960w`} />
                 <img src={picture.thumbnail} alt={`A photo of ${contactName}`} />
             </picture>
-            {details ? renderButton(contactId, onClose) : null}
+            {details ? renderCloseButton(contactId, onClose, queryParams) : null}
 
             <div className={styles.contactDetails}>
                 {details ? <h2 className={styles.contactName} aria-label="Name">{contactName}</h2> : <p className={styles.contactName} aria-label="Name">{contactName}</p>}
@@ -108,7 +133,8 @@ ContactCard.defaultProps = {
         }
     },
     details: false,
-    onClose: () => null
+    onClose: () => null,
+    queryParams: ''
 };
 
 ContactCard.propTypes = {
@@ -129,7 +155,8 @@ ContactCard.propTypes = {
         })
     }),
     details: PropTypes.bool,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    queryParams: PropTypes.string
 };
 
 export default ContactCard;

@@ -164,7 +164,14 @@ module.exports = {
                 ]
             }
         ],
-        "property-no-vendor-prefix": true,
+        "property-no-vendor-prefix": [
+            true,
+            {
+                ignoreProperties: [
+                    "padding-after"
+                ]
+            }
+        ],
         "rule-empty-line-before": [
             "always",
             {
@@ -249,6 +256,15 @@ module.exports = {
         "value-list-comma-space-after": "always-single-line",
         "value-list-comma-space-before": "never",
         "value-list-max-empty-lines": 0,
-        "value-no-vendor-prefix": true
+        "value-no-vendor-prefix": [
+            true,
+            {
+                ignoreValues: [
+                    "fill-available",
+                    "grab",
+                    "max-content"
+                ]
+            }
+        ]
     }
 }

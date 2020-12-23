@@ -52,13 +52,19 @@
 
 @media (prefers-reduced-motion) {
     .noAnimation {
+        color: var(--headingText);
         display: inline-block;
+        font-size: 1.25rem;
         left: 50%;
         margin: 0 auto;
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
         width: auto;
+    }
+
+    .spinner {
+        display: none;
     }
 }
 

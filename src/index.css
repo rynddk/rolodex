@@ -3,6 +3,9 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
         'Droid Sans', 'Helvetica Neue', ans-serif;
+    height: 100vh;
+    height: -webkit-fill-available;
+    overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -10,6 +13,7 @@ body {
 .rolo-app {
     display: block;
     height: 100vh;
+    height: -webkit-fill-available;
     overflow: hidden;
 }
 
@@ -21,7 +25,7 @@ img {
 
 /* stylelint-disable */
 [inert] {
-    pointer-events: all !important;
+    pointer-events: initial !important;
     cursor: default !important;
 }
 
@@ -41,10 +45,11 @@ img {
     --bodyBg: #FFF;
     --bodyText: #303030;
     --headingText: #000;
-    --highlight: #282C34;
+    --highlight: #F0F0F0;
     --active: #008390;
     --contactHighlight: #008390;
     --pagingationHover: #47CCDE;
+    --pagingationHoverText: #282C34;
     --break: #F0F0F0;
     --contactShadow: #FAFAFA;
     --contactFocus: #CACACA;
@@ -64,7 +69,8 @@ img {
         --highlight: #1A1A1A;
         --active: #47CCDE;
         --contactHighlight: #008390;
-        --pagingationHover: #008390;
+        --pagingationHover: #47CCDE;
+        --pagingationHoverText: #282C34;
         --break: #000;
         --contactShadow: #2A2A2A;
         --contactFocus: #008390;
