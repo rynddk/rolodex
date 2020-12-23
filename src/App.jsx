@@ -76,37 +76,35 @@ export default class App extends Component {
         const { pageCount } = this.state;
 
         return (
-            <footer className="rolo-footer" id="footer">
-                <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
-                    <ReactPaginate
-                        previousLabel="prev"
-                        nextLabel="next"
-                        breakLabel="more pages"
-                        ariaLabelBuilder={(page, selected) => {
-                            if (selected) {
-                                return 'Current page';
-                            }
+            <nav className="rolo-pagination" aria-label="Contact List Page Navigation">
+                <ReactPaginate
+                    previousLabel="prev"
+                    nextLabel="next"
+                    breakLabel="more pages"
+                    ariaLabelBuilder={(page, selected) => {
+                        if (selected) {
+                            return 'Current page';
+                        }
 
-                            return `Go to page ${page}`;
-                        }}
-                        pageCount={pageCount}
-                        marginPagesDisplayed={1}
-                        pageRangeDisplayed={3}
-                        onPageChange={this.handlePageClick}
-                        containerClassName="rolo-pagination-list"
-                        pageClassName="rolo-pagination-item"
-                        pageLinkClassName="rolo-pagination-link"
-                        activeClassName="rolo-pagination-active"
-                        activeLinkClassName="rolo-pagination-link-active"
-                        breakClassName="rolo-pagination-break-item rolo-pagination-item"
-                        breakLinkClassName="rolo-break-link rolo-pagination-link"
-                        nextClassName="rolo-pagination-item"
-                        nextLinkClassName="rolo-pagination-link"
-                        previousClassName="rolo-pagination-item"
-                        previousLinkClassName="rolo-pagination-link"
-                    />
-                </nav>
-            </footer>
+                        return `Go to page ${page}`;
+                    }}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={1}
+                    pageRangeDisplayed={3}
+                    onPageChange={this.handlePageClick}
+                    containerClassName="rolo-pagination-list"
+                    pageClassName="rolo-pagination-item"
+                    pageLinkClassName="rolo-pagination-link"
+                    activeClassName="rolo-pagination-active"
+                    activeLinkClassName="rolo-pagination-link-active"
+                    breakClassName="rolo-pagination-break-item rolo-pagination-item"
+                    breakLinkClassName="rolo-break-link rolo-pagination-link"
+                    nextClassName="rolo-pagination-item"
+                    nextLinkClassName="rolo-pagination-link"
+                    previousClassName="rolo-pagination-item"
+                    previousLinkClassName="rolo-pagination-link"
+                />
+            </nav>
         );
     }
 
@@ -121,7 +119,7 @@ export default class App extends Component {
     );
 
     render() {
-        const { cards, currentPage } = this.state;
+        const { cards, currentPage, pageCount } = this.state;
         const exportData = formatDataForExport(cards);
 
         return (
@@ -134,7 +132,10 @@ export default class App extends Component {
 
                 { cards.length ? <ContactList contacts={cards} refProp={this.contactList} /> : this.renderLoader() }
 
-                {this.renderPagination()}
+
+                <footer className="rolo-footer" id="footer">
+                    {pageCount > 1 ? this.renderPagination() : null}
+                </footer>
             </>
         );
     }
