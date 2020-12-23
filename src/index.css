@@ -4,6 +4,7 @@ body {
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
         'Droid Sans', 'Helvetica Neue', ans-serif;
     height: 100vh;
+    height: -webkit-fill-available;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -12,6 +13,7 @@ body {
 .rolo-app {
     display: block;
     height: 100vh;
+    height: -webkit-fill-available;
     overflow: hidden;
 }
 
