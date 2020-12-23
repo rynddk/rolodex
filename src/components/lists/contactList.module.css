@@ -12,11 +12,11 @@
     box-sizing: border-box;
     list-style: none;
     height: calc(100vh - 160px);
+    height: -webkit-fill-available;
     margin: 0;
     overflow-y: auto;
     padding: 0;
     width: 100%;
-    -webkit-padding-after: 124px;
 }
 
 .contactList:focus {
@@ -111,7 +111,6 @@
 
     .contactList {
         border-right: 1px solid var(--break);
-        -webkit-padding-after: 0;
     }
 
     .selectedContact {
