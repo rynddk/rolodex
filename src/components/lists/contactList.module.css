@@ -102,11 +102,8 @@
 
 @media screen and (min-width: 40rem) {
     .contactListContainer {
-        column-gap: 0;
-        display: grid;
-        grid-template-columns: 20rem auto;
         min-height: calc(100vh - 160px);
-        row-gap: 0;
+        width: 20rem;
     }
 
     .contactList {

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import ContactCard from '../cards/contactCard';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import styles from './contactList.module.css';
 
-const renderContact = (contact, itemId, handleClose) => (
+const renderContact = (contact, itemId, handleClose, queryParams) => (
     <aside
         className={styles.selectedContact}
         id="contact-detail" tabIndex="-1"
         role="dialog"
         aria-label={`${contact.name.first} ${contact.name.last}'s Contact Information'`}
     >
-        <ContactCard data={contact} contactId={itemId} selected details onClose={handleClose} />
+        <ContactCard data={contact} contactId={itemId} selected details onClose={handleClose} queryParams={queryParams} />
     </aside>
 );
 
@@ -20,11 +21,11 @@ const renderInstructions = () => (
     </aside>
 );
 
-const renderItem = (contact, index, selectedItem, setSelectedItem) => {
-    const { id = {}, name = {} } = contact;
+const renderItem = (contact, selectedItem, setSelectedItem, queryParams) => {
+    const { itemId, name = {} } = contact;
     const { first = '', last = '' } = name;
-    const uniqueId = id?.value || `${first}-${index}`;
-    const itemId = uniqueId.replace(/\s+/gu, '-').replace(/\./gu, '').toLowerCase();
+    const contactUrl = encodeURIComponent(`${first}-${last}`);
+    const urlSuffix = queryParams || '/';
 
     return (
         <li
@@ -32,10 +33,9 @@ const renderItem = (contact, index, selectedItem, setSelectedItem) => {
             className={styles.contactListItem}
             data-selected={selectedItem === itemId}
         >
-            <a
-                href={`/${itemId}`}
-                onClick={(event) => {
-                    event.preventDefault();
+            <Link
+                to={`/rolodex/${contactUrl}${urlSuffix}`}
+                onClick={() => {
                     setSelectedItem({
                         data: contact,
                         itemId
@@ -49,14 +49,18 @@ const renderItem = (contact, index, selectedItem, setSelectedItem) => {
                 className={styles.contactLink}
             >
                 <ContactCard data={contact} />
-            </a>
+            </Link>
         </li>
     );
 };
 
-const ContactList = ({ contacts = [], refProp }) => {
+const ContactList = (props) => {
+    const { allContacts, contacts, currentContact, queryParams, refProp } = props;
     const [selectedItem, setSelectedItem] = useState(0);
     const handleClose = () => setSelectedItem();
+    const currentData = allContacts.find((contact) => contact.contactUrl === currentContact);
+    const displayedContact = selectedItem?.data || currentData;
+    const displayedId = selectedItem?.itemId || currentData?.itemId;
 
     useEffect(() => {
         const contentElem = document.getElementById('content');
@@ -79,23 +83,28 @@ const ContactList = ({ contacts = [], refProp }) => {
                     ref={refProp}
                     tabIndex="-1"
                 >
-                    {contacts.map((contact, index) => renderItem(contact, index, selectedItem?.itemId, setSelectedItem))}
+                    {contacts.map((contact) => renderItem(contact, selectedItem?.itemId, setSelectedItem, queryParams))}
                 </ul>
             </main>
 
-            {selectedItem && selectedItem.data ? renderContact(selectedItem?.data, selectedItem?.itemId, handleClose) : renderInstructions()}
+            {displayedContact ? renderContact(displayedContact, displayedId, handleClose, queryParams) : renderInstructions()}
         </>
     );
 };
 
 ContactList.defaultProps = {
-    contacts: []
+    allContacts: [],
+    contacts: [],
+    currentContact: '',
+    queryParams: ''
 };
 
 ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(
+    allContacts: PropTypes.arrayOf(
         PropTypes.shape({
+            contactUrl: PropTypes.string,
             gender: PropTypes.string,
+            itemId: PropTypes.string,
             name: PropTypes.shape({
                 first: PropTypes.string,
                 last: PropTypes.string,
@@ -110,6 +119,26 @@ ContactList.propTypes = {
             })
         })
     ),
+    contacts: PropTypes.arrayOf(
+        PropTypes.shape({
+            gender: PropTypes.string,
+            itemId: PropTypes.string,
+            name: PropTypes.shape({
+                first: PropTypes.string,
+                last: PropTypes.string,
+                title: PropTypes.string
+            }),
+            email: PropTypes.string,
+            phone: PropTypes.string,
+            picture: PropTypes.shape({
+                large: PropTypes.string,
+                medium: PropTypes.string,
+                thumbnail: PropTypes.string
+            })
+        })
+    ),
+    currentContact: PropTypes.string,
+    queryParams: PropTypes.string,
     refProp: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({

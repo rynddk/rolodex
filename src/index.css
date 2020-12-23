@@ -45,6 +45,7 @@ img {
     --active: #008390;
     --contactHighlight: #008390;
     --pagingationHover: #47CCDE;
+    --pagingationHoverText: #282C34;
     --break: #F0F0F0;
     --contactShadow: #FAFAFA;
     --contactFocus: #CACACA;
@@ -60,7 +61,8 @@ img {
         --highlight: #1A1A1A;
         --active: #47CCDE;
         --contactHighlight: #008390;
-        --pagingationHover: #008390;
+        --pagingationHover: #47CCDE;
+        --pagingationHoverText: #282C34;
         --break: #000;
         --contactShadow: #2A2A2A;
         --contactFocus: #008390;
