@@ -25,7 +25,7 @@ img {
 
 /* stylelint-disable */
 [inert] {
-    pointer-events: all !important;
+    pointer-events: initial !important;
     cursor: default !important;
 }
 
