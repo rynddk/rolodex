@@ -16,7 +16,7 @@
     overflow-y: auto;
     padding: 0;
     width: 100%;
-    -webkit-padding-after: 80px;
+    -webkit-padding-after: 0;
 }
 
 .contactList:focus {
