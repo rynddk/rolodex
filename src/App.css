@@ -41,8 +41,8 @@
 
 .rolo-visually-hidden-link:focus {
     background-color: var(--visuallyHiddenBg);
-    border: 2px solid var(--highlight);
-    color: var(--highlight);
+    border: 2px solid var(--visuallyHiddenBorder);
+    color: var(--visuallyHiddenText);
     left: 1rem;
 }
 
