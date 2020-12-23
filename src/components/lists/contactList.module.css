@@ -1,7 +1,6 @@
 .contactListContainer {
     background-color: var(--bodyBg);
     bottom: 80px;
-    min-height: calc(100vh - 160px);
     overflow: hidden;
     position: fixed;
     top: 80px;
@@ -105,6 +104,7 @@
         column-gap: 0;
         display: grid;
         grid-template-columns: 20rem auto;
+        min-height: calc(100vh - 160px);
         row-gap: 0;
     }
 
