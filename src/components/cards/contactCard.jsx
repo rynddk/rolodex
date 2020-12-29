@@ -1,4 +1,5 @@
 import { CSVLink } from 'react-csv';
+import { Helmet } from 'react-helmet';
 import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -66,9 +67,14 @@ const renderDownloadLink = (data, name) => {
 const renderDetails = (data, contactName) => {
     const { gender, email, phone } = data;
     const pronouns = getPronouns(gender);
+    const pageTitle = `${contactName}'s Contact Details. Rolodex.`;
 
     return (
         <>
+            <Helmet>
+                <title>{pageTitle}</title>
+            </Helmet>
+
             <p
                 aria-label={`${contactName}'s pronouns`}
                 className={styles.contactPronouns}
