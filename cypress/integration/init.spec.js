@@ -5,5 +5,6 @@ describe('Cypress', () => {
 
     it('visits the app', () => {
         cy.visit('/rolodex/');
+        cy.title().should('eq', 'Rolodex. A simple contact list application.')
     });
 });

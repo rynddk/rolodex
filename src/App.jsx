@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
 import Header from './components/header/header';
+import { Helmet } from 'react-helmet';
 import Loading from './components/loading/loading';
 import Pagination from './components/pagination/pagination';
 import PropTypes from 'prop-types';
@@ -96,6 +97,10 @@ export default class App extends Component {
 
         return (
             <>
+                <Helmet>
+                    <title>Rolodex. A simple contact list application.</title>
+                    <link rel="canonical" href="https://rynddk.github.io/rolodex/" />
+                </Helmet>
                 <div id="content" className="rolo-main-content">
                     <Header currentContacts={exportData} currentPage={pageNum} />
                 </div>
