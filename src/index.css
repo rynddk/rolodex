@@ -35,6 +35,10 @@ img {
 }
 
 :root {
+    --loadingBg: #FCFCFC;
+    --loaderBg1: #282C34;
+    --loaderBg2: #47CCDE;
+    --loaderBg3: #008390;
     --visuallyHiddenBg: #FAFAFA;
     --visuallyHiddenBorder: #008390;
     --visuallyHiddenText: #008390;
@@ -55,6 +59,10 @@ img {
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --loadingBg: #282C34;
+        --loaderBg1: #FAFAFA;
+        --loaderBg2: #008390;
+        --loaderBg3: #47CCDE;
         --bodyBg: #282C34;
         --bodyText: #FFF;
         --headingText: #FAFAFA;
