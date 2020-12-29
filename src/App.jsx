@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
 import Header from './components/header/header';
+import Loading from './components/loading/loading';
 import Pagination from './components/pagination/pagination';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -26,7 +27,9 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        const minLoadTime = 1000;
+
+        setTimeout(() => this.fetchData(), minLoadTime);
     }
 
     fetchData() {
@@ -110,7 +113,7 @@ export default class App extends Component {
                         refProp={this.contactList}
                         queryParams={search}
                     />
-                ) : this.renderLoader() }
+                ) : <Loading /> }
 
 
                 <footer className="rolo-footer" id="footer">
