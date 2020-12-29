@@ -1,6 +1,6 @@
 describe('Accessibility Tests', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit('/rolodex/');
         cy.injectAxe();
     });
 
