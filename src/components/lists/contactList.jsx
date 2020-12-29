@@ -79,7 +79,7 @@ const ContactList = (props) => {
                     aria-activedescendant={selectedItem?.itemId || null}
                     aria-label="Contact List"
                     className={styles.contactList}
-                    id="contacts-list"
+                    id="contact-list"
                     ref={refProp}
                     tabIndex="-1"
                 >

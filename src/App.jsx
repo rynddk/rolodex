@@ -2,7 +2,6 @@ import './App.css';
 import React, { Component } from 'react';
 import ContactList from './components/lists/contactList';
 import Header from './components/header/header';
-import { Link } from '@reach/router';
 import Pagination from './components/pagination/pagination';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -100,8 +99,6 @@ export default class App extends Component {
         return (
             <>
                 <div id="content" className="rolo-main-content">
-                    <Link to="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</Link>
-
                     <Header currentContacts={exportData} currentPage={pageNum} />
                 </div>
 

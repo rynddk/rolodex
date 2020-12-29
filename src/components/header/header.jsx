@@ -1,4 +1,5 @@
 import { CSVLink } from 'react-csv';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ReactComponent as ReactDownload } from '../../assets/icons/download.svg';
@@ -19,6 +20,8 @@ const renderDownloadLink = (contacts, currentPage) => (
 
 const Header = ({ currentContacts, currentPage }) => (
     <header className={styles.header}>
+        <Link to="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</Link>
+
         <div className={styles.headerContent}>
             <h1 className={styles.appTitle}>Contacts</h1>
             {currentContacts.length ? renderDownloadLink(currentContacts, currentPage) : null}
