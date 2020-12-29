@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { formatDataForExport } from './utils/export';
 import { formatRequestUrl } from './utils/api';
-import listStyles from './components/lists/contactList.module.css';
 import paginationStyles from './components/pagination/pagination.module.css';
 import { sortAlphaByParam } from './utils/sorting';
 
@@ -63,13 +62,9 @@ export default class App extends Component {
     }
 
     renderLoader = () => (
-        <>
-            <main id="rolodex" />
-
-            <aside id="contact-list" className={listStyles.noSelectedContent} tabIndex="-1">
-                <p className="rolo-loading-text">Loading...</p>
-            </aside>
-        </>
+        <main id="rolodex">
+            <Loading />
+        </main>
     );
 
     getPageCards(page) {
@@ -113,7 +108,7 @@ export default class App extends Component {
                         refProp={this.contactList}
                         queryParams={search}
                     />
-                ) : <Loading /> }
+                ) : this.renderLoader() }
 
 
                 <footer className="rolo-footer" id="footer">
