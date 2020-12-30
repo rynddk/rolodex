@@ -20,7 +20,7 @@ const renderLink = (isLink, page, text, baseHref) => (isLink ? (
     </span>
 ));
 
-const Pagination = ({ contactId, current, total }) => {
+const Pagination = ({ contactId, current, handleOnSkip, total }) => {
     const baseHref = contactId ? `/rolodex/${contactId}` : '';
     const pages = Array.from({ length: total }).map((page, index) => ({
         current: index + 1 === current,
@@ -31,36 +31,51 @@ const Pagination = ({ contactId, current, total }) => {
     const currentPage = pages.find((page) => page.current);
 
     return (
-        <ul className={styles.paginationList}>
-            <li className={styles.paginationItem}>
-                { renderLink(current > 1, current - 1, 'Previous', baseHref) }
-            </li>
+        <>
+            <ul className={styles.paginationList}>
+                <li className={styles.paginationItem}>
+                    { renderLink(current > 1, current - 1, 'Previous', baseHref) }
+                </li>
 
-            <li className={styles.paginationItem}>
-                <span
-                    className={styles.currentPage}
-                    aria-label={`Currently viewing page ${currentPage.key}`}
-                >
-                    {currentPage.key}
-                </span>
-            </li>
+                <li className={styles.paginationItem}>
+                    <span
+                        className={styles.currentPage}
+                        aria-label={`Currently viewing page ${currentPage.key}`}
+                    >
+                        {currentPage.key}
+                    </span>
+                </li>
 
-            <li className={styles.paginationItem}>
-                { renderLink(total > current, current + 1, 'Next', baseHref) }
-            </li>
-        </ul>
+                <li className={styles.paginationItem}>
+                    { renderLink(total > current, current + 1, 'Next', baseHref) }
+                </li>
+            </ul>
+
+            <Link
+                to={`#contact-list?page=${current}`}
+                className={styles.skipLink}
+                onClick={(event) => {
+                    event.preventDefault();
+                    handleOnSkip();
+                }}
+            >
+                Go to contact list
+            </Link>
+        </>
     );
 };
 
 Pagination.defaultProps = {
     contactId: '',
     current: 0,
+    handleOnSkip: () => null,
     total: 0
 };
 
 Pagination.propTypes = {
     contactId: PropTypes.string,
     current: PropTypes.number,
+    handleOnSkip: PropTypes.func,
     total: PropTypes.number
 };
 

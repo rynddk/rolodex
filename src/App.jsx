@@ -81,7 +81,7 @@ export default class App extends Component {
 
         return (
             <nav className={paginationStyles.listContainer} aria-label="Contact List Page Navigation">
-                <Pagination current={pageNum} total={pageCount} contactId={contactId} />
+                <Pagination current={pageNum} total={pageCount} contactId={contactId} handleOnSkip={this.focusContactList} />
             </nav>
         );
     }

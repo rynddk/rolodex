@@ -21,9 +21,10 @@ const renderDownloadLink = (contacts, currentPage) => (
 const Header = ({ currentContacts, currentPage, handleOnSkip }) => (
     <header className={styles.header}>
         <Link
-            to="#contact-list"
+            to={`#contact-list?page=${currentPage}`}
             className="rolo-visually-hidden-link"
-            onClick={() => {
+            onClick={(event) => {
+                event.preventDefault();
                 handleOnSkip();
             }}
         >
