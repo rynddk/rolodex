@@ -102,7 +102,7 @@ export default class App extends Component {
                     <link rel="canonical" href="https://rynddk.github.io/rolodex/" />
                 </Helmet>
                 <div id="content" className="rolo-main-content">
-                    <Header currentContacts={exportData} currentPage={pageNum} />
+                    <Header currentContacts={exportData} currentPage={pageNum} handleOnSkip={this.focusContactList} />
                 </div>
 
                 { displayedContacts.length ? (

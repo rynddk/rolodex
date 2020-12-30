@@ -18,9 +18,17 @@ const renderDownloadLink = (contacts, currentPage) => (
     </div>
 );
 
-const Header = ({ currentContacts, currentPage }) => (
+const Header = ({ currentContacts, currentPage, handleOnSkip }) => (
     <header className={styles.header}>
-        <Link to="#contact-list" className="rolo-visually-hidden-link">Skip to Contact List</Link>
+        <Link
+            to="#contact-list"
+            className="rolo-visually-hidden-link"
+            onClick={() => {
+                handleOnSkip();
+            }}
+        >
+            Skip to Contact List
+        </Link>
 
         <div className={styles.headerContent}>
             <h1 className={styles.appTitle}>Contacts</h1>
@@ -52,7 +60,8 @@ Header.propTypes = {
             })
         })
     ),
-    currentPage: PropTypes.number
+    currentPage: PropTypes.number,
+    handleOnSkip: PropTypes.func.isRequired
 };
 
 export default Header;
