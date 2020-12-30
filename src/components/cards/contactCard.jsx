@@ -41,7 +41,7 @@ const renderCloseButton = (contactId, onClose, queryParams) => (
     <Link
         to={`/rolodex${queryParams || '/'}`}
         role="button"
-        arial-label="Go back to contact list"
+        aria-label="Go back to contact list"
         onClick={() => buttonClick(contactId, onClose)}
         className={styles.closeButton}
     >
